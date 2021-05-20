@@ -5,9 +5,9 @@ on:
     branches: #all branches that are NOT master.
       - '*'
       - '!main'
-    paths:
-      - '*'
+    paths-ignore:
       - '!Help/**'
+      - '!docs/**'
       - '!.github/**'
       - '!build-scripts/**'
   pull_request:
