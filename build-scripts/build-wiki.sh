@@ -1,12 +1,15 @@
 #!/bin/bash
 
-while getopts p:d:b: flag
+while getopts p:d:b:u:e:t:r: flag
 do
     case "${flag}" in
         p) packageName=${OPTARG};;
         d) workingDir=${OPTARG};;
         b) buildType==${OPTARG};;
-
+        u) githubUser=${OPTARG};;
+        e) githubEmail=${OPTARG};;
+        t) githubToken=${OPTARG};;
+        r) repo=${OPTARG};;
     esac
 done
 
@@ -19,8 +22,13 @@ if [ ! $packageName ]; then
 fi
 
 if [ ! $workingDir ]; then 
-    export workingDir="$(pwd)"
+    export workingDir="$(pwd)/Help"
 fi
+
+if [ ! $repo ]; then
+    export repo="$(pwd | sed 's/.*\/\([^\/]*\)$/\1/')"
+fi
+
 
 
 if [ $GITHUB_ENV ]; then 
@@ -41,3 +49,34 @@ dotnet publish --no-build --configuration $buildType --verbosity normal "${packa
 
 xmldoc2md ./$packageName/bin/$buildType/netstandard2.0/publish/$packageName.dll ./Help --github-pages --back-button --index-page-name home
 
+
+TEMP_CLONE_FOLDER="temp_wiki_$GITHUB_SHA"
+#TEMP_EXCLUDED_FILE="temp_wiki_excluded_$GITHUB_SHA.txt"
+message=$(git log -1 --format=%B)
+
+
+echo "Configuring wiki git..."
+mkdir $TEMP_CLONE_FOLDER
+cd $TEMP_CLONE_FOLDER
+git init
+
+
+
+# Setup credentials
+git config user.name $githubUser
+git config user.email $githubEmail
+
+git pull https://$githubToken@github.com/$githubUser/$repo.wiki.git
+
+
+
+rsync -av --delete $workingDir $TEMP_CLONE_FOLDER/ --exclude .git
+
+
+git add .
+git commit -m "$message"
+git push --set-upstream https://$githubUser:$githubToken@github.com/$githubUser/$repo.wiki.git master || git push --set-upstream https://$githubToken@github.com/$githubUser/$repo.wiki.git master
+
+cd ..
+rm -rf $TEMP_CLONE_FOLDER
+#rm -f $TEMP_EXCLUDED_FILE

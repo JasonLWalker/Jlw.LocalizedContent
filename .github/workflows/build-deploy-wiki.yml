@@ -1,6 +1,10 @@
 name: Build Wiki
 
 on:
+  push:
+    paths:
+      # Trigger only when wiki directory changes
+      - 'Help/**'
   workflow_dispatch:
 
 jobs:
@@ -14,14 +18,7 @@ jobs:
         /bin/bash ./build-scripts/setenv.sh
     - name: Run build script
       run: |
-        /bin/bash ./build-scripts/build-wiki.sh -p "Jlw.Data.LocalizedContent" "Release"
-    # Additional steps to generate documentation in "Documentation" directory
-    - name: Upload Documentation to Wiki
-      uses: SwiftDocOrg/github-wiki-publish-action@v1
-      with:
-        path: "Help"
-    env:
-      GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        /bin/bash ./build-scripts/build-wiki.sh -p "Jlw.Data.LocalizedContent" -b "Release" -u ${{ github.repository_owner }} -e ${{ secrets.GPR_EMAIL }} -t {{ env.GITHUB_TOKEN }}
   cleanup:
     needs: build-wiki
     if: always()
