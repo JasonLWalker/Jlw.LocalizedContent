@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="626e3a3e-22cf-4908-b5be-6f0c09995570" Title="Jlw.Data.LocalizedContent Namespace" Url="html/N-Jlw.Data.LocalizedContent.htm">
+    <HelpTOCNode Id="c2b3b32f-f78c-41bf-99c6-ffcc91274254" Title="ILocalizedContentField Interface" Url="html/T-Jlw.Data.LocalizedContent.ILocalizedContentField.htm">
+      <HelpTOCNode Title="ILocalizedContentField Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.ILocalizedContentField.htm" />
+      <HelpTOCNode Title="ILocalizedContentField Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.ILocalizedContentField.htm" />
+      <HelpTOCNode Id="f4063533-79f7-43f6-8997-876673e04997" Title="ILocalizedContentField Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.ILocalizedContentField.htm">
+        <HelpTOCNode Title="AuditChangeBy Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.AuditChangeBy.htm" />
+        <HelpTOCNode Title="AuditChangeDate Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.AuditChangeDate.htm" />
+        <HelpTOCNode Title="AuditChangeType Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.AuditChangeType.htm" />
+        <HelpTOCNode Title="DefaultLabel Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.DefaultLabel.htm" />
+        <HelpTOCNode Title="FieldClass Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.FieldClass.htm" />
+        <HelpTOCNode Title="FieldData Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.FieldData.htm" />
+        <HelpTOCNode Title="FieldKey Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.FieldKey.htm" />
+        <HelpTOCNode Title="FieldType Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.FieldType.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.GroupKey.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.Id.htm" />
+        <HelpTOCNode Title="Order Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.Order.htm" />
+        <HelpTOCNode Title="ParentKey Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.ParentKey.htm" />
+        <HelpTOCNode Title="WrapperClass Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.WrapperClass.htm" />
+        <HelpTOCNode Title="WrapperHtmlEnd Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.WrapperHtmlEnd.htm" />
+        <HelpTOCNode Title="WrapperHtmlStart Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentField.WrapperHtmlStart.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="00ce17ad-0c9e-47ef-ba28-e96f9af4185c" Title="ILocalizedContentFieldRepository Interface" Url="html/T-Jlw.Data.LocalizedContent.ILocalizedContentFieldRepository.htm">
+      <HelpTOCNode Title="ILocalizedContentFieldRepository Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.ILocalizedContentFieldRepository.htm" />
+      <HelpTOCNode Id="77f9a495-2229-442c-bc4a-4b501e8ffd2a" Title="ILocalizedContentFieldRepository Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.ILocalizedContentFieldRepository.htm">
+        <HelpTOCNode Title="GetDataTableList Method " Url="html/M-Jlw.Data.LocalizedContent.ILocalizedContentFieldRepository.GetDataTableList.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="82d81775-c54f-40a6-aa8f-40084267cd52" Title="ILocalizedContentText Interface" Url="html/T-Jlw.Data.LocalizedContent.ILocalizedContentText.htm">
+      <HelpTOCNode Title="ILocalizedContentText Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.ILocalizedContentText.htm" />
+      <HelpTOCNode Title="ILocalizedContentText Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.ILocalizedContentText.htm" />
+      <HelpTOCNode Id="2262e3cc-e37c-4b6c-9898-b4cf4ba4484e" Title="ILocalizedContentText Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.ILocalizedContentText.htm">
+        <HelpTOCNode Title="AuditChangeBy Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentText.AuditChangeBy.htm" />
+        <HelpTOCNode Title="AuditChangeDate Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentText.AuditChangeDate.htm" />
+        <HelpTOCNode Title="AuditChangeType Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentText.AuditChangeType.htm" />
+        <HelpTOCNode Title="FieldKey Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentText.FieldKey.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentText.GroupKey.htm" />
+        <HelpTOCNode Title="Language Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentText.Language.htm" />
+        <HelpTOCNode Title="Text Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedContentText.Text.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="2d366346-c9b6-4514-a189-6d308d271c56" Title="ILocalizedContentTextRepository Interface" Url="html/T-Jlw.Data.LocalizedContent.ILocalizedContentTextRepository.htm">
+      <HelpTOCNode Title="ILocalizedContentTextRepository Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.ILocalizedContentTextRepository.htm" />
+      <HelpTOCNode Id="6bed2f77-78e1-45d4-8e2d-ba4972690541" Title="ILocalizedContentTextRepository Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.ILocalizedContentTextRepository.htm">
+        <HelpTOCNode Title="GetDataTableList Method " Url="html/M-Jlw.Data.LocalizedContent.ILocalizedContentTextRepository.GetDataTableList.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="895929c0-9415-4999-b8ad-e9c54e4c9c49" Title="ILocalizedGroupDataItem Interface" Url="html/T-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.htm">
+      <HelpTOCNode Title="ILocalizedGroupDataItem Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.htm" />
+      <HelpTOCNode Title="ILocalizedGroupDataItem Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.htm" />
+      <HelpTOCNode Id="4d85115e-d440-45aa-925a-7dd81c980a76" Title="ILocalizedGroupDataItem Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.htm">
+        <HelpTOCNode Title="AuditChangeBy Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.AuditChangeBy.htm" />
+        <HelpTOCNode Title="AuditChangeDate Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.AuditChangeDate.htm" />
+        <HelpTOCNode Title="AuditChangeType Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.AuditChangeType.htm" />
+        <HelpTOCNode Title="Data Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.Data.htm" />
+        <HelpTOCNode Title="Description Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.Description.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.GroupKey.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.Id.htm" />
+        <HelpTOCNode Title="Key Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.Key.htm" />
+        <HelpTOCNode Title="Language Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.Language.htm" />
+        <HelpTOCNode Title="Order Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.Order.htm" />
+        <HelpTOCNode Title="Value Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDataItem.Value.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="d94acdde-41aa-4c82-bc3b-bddab814324e" Title="ILocalizedGroupDataItemRepository Interface" Url="html/T-Jlw.Data.LocalizedContent.ILocalizedGroupDataItemRepository.htm">
+      <HelpTOCNode Title="ILocalizedGroupDataItemRepository Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.ILocalizedGroupDataItemRepository.htm" />
+      <HelpTOCNode Id="120e16e3-57e0-4e70-95ce-8cfb0e306847" Title="ILocalizedGroupDataItemRepository Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.ILocalizedGroupDataItemRepository.htm">
+        <HelpTOCNode Title="GetDataTableList Method " Url="html/M-Jlw.Data.LocalizedContent.ILocalizedGroupDataItemRepository.GetDataTableList.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="736f8ecb-51ac-4f30-8888-bfc47a562b1a" Title="ILocalizedGroupDatasetItem Interface" Url="html/T-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.htm">
+      <HelpTOCNode Title="ILocalizedGroupDatasetItem Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.htm" />
+      <HelpTOCNode Title="ILocalizedGroupDatasetItem Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.htm" />
+      <HelpTOCNode Id="906cbb82-03b3-4a3f-91cc-55d64420d4a0" Title="ILocalizedGroupDatasetItem Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.htm">
+        <HelpTOCNode Title="Data Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.Data.htm" />
+        <HelpTOCNode Title="Description Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.Description.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.GroupKey.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.Id.htm" />
+        <HelpTOCNode Title="Key Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.Key.htm" />
+        <HelpTOCNode Title="Language Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.Language.htm" />
+        <HelpTOCNode Title="Order Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.Order.htm" />
+        <HelpTOCNode Title="Value Property " Url="html/P-Jlw.Data.LocalizedContent.ILocalizedGroupDatasetItem.Value.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="539f8a58-46c4-4525-b783-bac99e0ddd77" Title="LocalizedContentField Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedContentField.htm">
+      <HelpTOCNode Title="LocalizedContentField Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedContentField.htm" />
+      <HelpTOCNode Id="479f901d-375e-48d8-8b94-daa4973145bc" Title="LocalizedContentField Constructor " Url="html/Overload-Jlw.Data.LocalizedContent.LocalizedContentField.-ctor.htm">
+        <HelpTOCNode Title="LocalizedContentField Constructor " Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentField.-ctor.htm" />
+        <HelpTOCNode Title="LocalizedContentField Constructor (Object)" Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentField.-ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="68b22de4-b522-4f98-9fc6-304144e6dd6a" Title="LocalizedContentField Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedContentField.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentField.Initialize.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="fb087bde-4c3e-431c-9719-ebb31ab7ecae" Title="LocalizedContentField Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedContentField.htm">
+        <HelpTOCNode Title="AuditChangeBy Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.AuditChangeBy.htm" />
+        <HelpTOCNode Title="AuditChangeDate Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.AuditChangeDate.htm" />
+        <HelpTOCNode Title="AuditChangeType Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.AuditChangeType.htm" />
+        <HelpTOCNode Title="DefaultLabel Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.DefaultLabel.htm" />
+        <HelpTOCNode Title="FieldClass Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.FieldClass.htm" />
+        <HelpTOCNode Title="FieldData Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.FieldData.htm" />
+        <HelpTOCNode Title="FieldKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.FieldKey.htm" />
+        <HelpTOCNode Title="FieldType Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.FieldType.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.GroupKey.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.Id.htm" />
+        <HelpTOCNode Title="Order Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.Order.htm" />
+        <HelpTOCNode Title="ParentKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.ParentKey.htm" />
+        <HelpTOCNode Title="WrapperClass Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.WrapperClass.htm" />
+        <HelpTOCNode Title="WrapperHtmlEnd Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.WrapperHtmlEnd.htm" />
+        <HelpTOCNode Title="WrapperHtmlStart Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentField.WrapperHtmlStart.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c88045d2-1864-47ed-8a73-eb780d4946dd" Title="LocalizedContentFieldDataTablesInput Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.htm">
+      <HelpTOCNode Title="LocalizedContentFieldDataTablesInput Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.htm" />
+      <HelpTOCNode Title="LocalizedContentFieldDataTablesInput Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.htm" />
+      <HelpTOCNode Id="a4550cb1-ab92-4cbf-b02d-36f5ec5eb002" Title="LocalizedContentFieldDataTablesInput Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.htm">
+        <HelpTOCNode Title="FieldKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.FieldKey.htm" />
+        <HelpTOCNode Title="FieldType Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.FieldType.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.GroupKey.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.Id.htm" />
+        <HelpTOCNode Title="ParentKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentFieldDataTablesInput.ParentKey.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="7d8c2042-e51a-4bec-8829-4c4ae01a94e7" Title="LocalizedContentFieldRepository Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedContentFieldRepository.htm">
+      <HelpTOCNode Title="LocalizedContentFieldRepository Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedContentFieldRepository.htm" />
+      <HelpTOCNode Title="LocalizedContentFieldRepository Constructor " Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentFieldRepository.-ctor.htm" />
+      <HelpTOCNode Id="a2785c5f-450a-47f6-b1d2-80076b323832" Title="LocalizedContentFieldRepository Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedContentFieldRepository.htm">
+        <HelpTOCNode Title="GetDataTableList Method " Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentFieldRepository.GetDataTableList.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="aabddf23-1f34-4924-b828-2719ac4e2e3a" Title="LocalizedContentFieldRepositoryOptions Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedContentFieldRepositoryOptions.htm">
+      <HelpTOCNode Title="LocalizedContentFieldRepositoryOptions Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedContentFieldRepositoryOptions.htm" />
+      <HelpTOCNode Title="LocalizedContentFieldRepositoryOptions Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedContentFieldRepositoryOptions.htm" />
+      <HelpTOCNode Id="79edf15b-3617-4135-bbbc-318f3b7343cd" Title="LocalizedContentFieldRepositoryOptions Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedContentFieldRepositoryOptions.htm">
+        <HelpTOCNode Title="ConnectionString Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentFieldRepositoryOptions.ConnectionString.htm" />
+        <HelpTOCNode Title="DbClient Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentFieldRepositoryOptions.DbClient.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="86224167-c57c-4e41-ba1b-1b161ab11a94" Title="LocalizedContentText Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedContentText.htm">
+      <HelpTOCNode Title="LocalizedContentText Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedContentText.htm" />
+      <HelpTOCNode Id="0be17edd-c37e-4ad9-8c82-5c614e82556d" Title="LocalizedContentText Constructor " Url="html/Overload-Jlw.Data.LocalizedContent.LocalizedContentText.-ctor.htm">
+        <HelpTOCNode Title="LocalizedContentText Constructor " Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentText.-ctor.htm" />
+        <HelpTOCNode Title="LocalizedContentText Constructor (Object)" Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentText.-ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="77bf9033-a42c-4394-851c-0bece1ceda8e" Title="LocalizedContentText Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedContentText.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentText.Initialize.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="804a69a9-e9a1-4abd-9007-294865d650e3" Title="LocalizedContentText Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedContentText.htm">
+        <HelpTOCNode Title="AuditChangeBy Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentText.AuditChangeBy.htm" />
+        <HelpTOCNode Title="AuditChangeDate Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentText.AuditChangeDate.htm" />
+        <HelpTOCNode Title="AuditChangeType Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentText.AuditChangeType.htm" />
+        <HelpTOCNode Title="FieldKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentText.FieldKey.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentText.GroupKey.htm" />
+        <HelpTOCNode Title="Language Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentText.Language.htm" />
+        <HelpTOCNode Title="Text Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentText.Text.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6b369f2c-8b9e-4a15-a168-ae7956c0b815" Title="LocalizedContentTextDataTablesInput Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedContentTextDataTablesInput.htm">
+      <HelpTOCNode Title="LocalizedContentTextDataTablesInput Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedContentTextDataTablesInput.htm" />
+      <HelpTOCNode Title="LocalizedContentTextDataTablesInput Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedContentTextDataTablesInput.htm" />
+      <HelpTOCNode Id="29544e41-92ee-4f6e-aa4f-f1ed7aaa2c29" Title="LocalizedContentTextDataTablesInput Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedContentTextDataTablesInput.htm">
+        <HelpTOCNode Title="FieldKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentTextDataTablesInput.FieldKey.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentTextDataTablesInput.GroupKey.htm" />
+        <HelpTOCNode Title="Language Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentTextDataTablesInput.Language.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="687df2ae-e160-481f-ba1d-e68065a44578" Title="LocalizedContentTextRepository Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedContentTextRepository.htm">
+      <HelpTOCNode Title="LocalizedContentTextRepository Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedContentTextRepository.htm" />
+      <HelpTOCNode Title="LocalizedContentTextRepository Constructor " Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentTextRepository.-ctor.htm" />
+      <HelpTOCNode Id="db635c2a-54c0-46c0-91ba-c6854a713f9f" Title="LocalizedContentTextRepository Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedContentTextRepository.htm">
+        <HelpTOCNode Title="GetDataTableList Method " Url="html/M-Jlw.Data.LocalizedContent.LocalizedContentTextRepository.GetDataTableList.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9a7c9824-df0f-407e-add2-06a348c88175" Title="LocalizedContentTextRepositoryOptions Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedContentTextRepositoryOptions.htm">
+      <HelpTOCNode Title="LocalizedContentTextRepositoryOptions Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedContentTextRepositoryOptions.htm" />
+      <HelpTOCNode Title="LocalizedContentTextRepositoryOptions Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedContentTextRepositoryOptions.htm" />
+      <HelpTOCNode Id="fd7beb40-7b23-4781-892c-055221710b58" Title="LocalizedContentTextRepositoryOptions Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedContentTextRepositoryOptions.htm">
+        <HelpTOCNode Title="ConnectionString Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentTextRepositoryOptions.ConnectionString.htm" />
+        <HelpTOCNode Title="DbClient Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedContentTextRepositoryOptions.DbClient.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="3222a00b-dad5-4c35-9fcb-c9e01a9bfde1" Title="LocalizedGroupDataItem Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.htm">
+      <HelpTOCNode Title="LocalizedGroupDataItem Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.htm" />
+      <HelpTOCNode Id="333bf7b1-c63e-4e8b-85e3-993a439da92a" Title="LocalizedGroupDataItem Constructor " Url="html/Overload-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.-ctor.htm">
+        <HelpTOCNode Title="LocalizedGroupDataItem Constructor " Url="html/M-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.-ctor.htm" />
+        <HelpTOCNode Title="LocalizedGroupDataItem Constructor (Object)" Url="html/M-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.-ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="7f5e633b-d911-42b4-8356-57d787d84a06" Title="LocalizedGroupDataItem Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.Initialize.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f82cdec6-89a2-46f2-81e9-3303a9b007f6" Title="LocalizedGroupDataItem Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.htm">
+        <HelpTOCNode Title="AuditChangeBy Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.AuditChangeBy.htm" />
+        <HelpTOCNode Title="AuditChangeDate Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.AuditChangeDate.htm" />
+        <HelpTOCNode Title="AuditChangeType Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.AuditChangeType.htm" />
+        <HelpTOCNode Title="Data Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.Data.htm" />
+        <HelpTOCNode Title="Description Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.Description.htm" />
+        <HelpTOCNode Title="GroupKey Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.GroupKey.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.Id.htm" />
+        <HelpTOCNode Title="Key Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.Key.htm" />
+        <HelpTOCNode Title="Language Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.Language.htm" />
+        <HelpTOCNode Title="Order Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.Order.htm" />
+        <HelpTOCNode Title="Value Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItem.Value.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="91669826-e4ec-4f34-ab9d-e6faadf5f042" Title="LocalizedGroupDataItemDataTablesInput Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemDataTablesInput.htm">
+      <HelpTOCNode Title="LocalizedGroupDataItemDataTablesInput Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemDataTablesInput.htm" />
+      <HelpTOCNode Title="LocalizedGroupDataItemDataTablesInput Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemDataTablesInput.htm" />
+      <HelpTOCNode Id="c2cf55e8-938f-4bba-8407-5a6647640272" Title="LocalizedGroupDataItemDataTablesInput Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemDataTablesInput.htm">
+        <HelpTOCNode Title="Id Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItemDataTablesInput.Id.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="692b9d3a-bffd-4890-8703-b4dd0b8731d6" Title="LocalizedGroupDataItemRepository Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepository.htm">
+      <HelpTOCNode Title="LocalizedGroupDataItemRepository Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepository.htm" />
+      <HelpTOCNode Title="LocalizedGroupDataItemRepository Constructor " Url="html/M-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepository.-ctor.htm" />
+      <HelpTOCNode Id="deb43058-a976-44ff-82b3-0ac791f8d118" Title="LocalizedGroupDataItemRepository Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepository.htm">
+        <HelpTOCNode Title="GetDataTableList Method " Url="html/M-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepository.GetDataTableList.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="57c95817-2e40-4d58-952d-94af9cfb0190" Title="LocalizedGroupDataItemRepositoryOptions Class" Url="html/T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepositoryOptions.htm">
+      <HelpTOCNode Title="LocalizedGroupDataItemRepositoryOptions Members" Url="html/AllMembers.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepositoryOptions.htm" />
+      <HelpTOCNode Title="LocalizedGroupDataItemRepositoryOptions Methods" Url="html/Methods.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepositoryOptions.htm" />
+      <HelpTOCNode Id="c6fa2880-8dc1-4cc5-9df9-363e4e1b9c52" Title="LocalizedGroupDataItemRepositoryOptions Properties" Url="html/Properties.T-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepositoryOptions.htm">
+        <HelpTOCNode Title="ConnectionString Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepositoryOptions.ConnectionString.htm" />
+        <HelpTOCNode Title="DbClient Property " Url="html/P-Jlw.Data.LocalizedContent.LocalizedGroupDataItemRepositoryOptions.DbClient.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="993c80a6-934b-47da-8a98-def0f29e56b6" Title="Microsoft.Extensions.DependencyInjection Namespace" Url="html/N-Microsoft.Extensions.DependencyInjection.htm">
+    <HelpTOCNode Id="a707905b-618d-42c3-a547-ad3797177187" Title="LocalizedContentFieldExtensions Class" Url="html/T-Microsoft.Extensions.DependencyInjection.LocalizedContentFieldExtensions.htm">
+      <HelpTOCNode Title="LocalizedContentFieldExtensions Members" Url="html/AllMembers.T-Microsoft.Extensions.DependencyInjection.LocalizedContentFieldExtensions.htm" />
+      <HelpTOCNode Id="1fc19145-4f8f-4f9c-b162-ad2871abfbd2" Title="LocalizedContentFieldExtensions Methods" Url="html/Methods.T-Microsoft.Extensions.DependencyInjection.LocalizedContentFieldExtensions.htm">
+        <HelpTOCNode Title="AddLocalizedContentFieldRepository Method " Url="html/M-Microsoft.Extensions.DependencyInjection.LocalizedContentFieldExtensions.AddLocalizedContentFieldRepository.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b6a83f22-b21a-4d50-9b3d-0f27b141b5a6" Title="LocalizedContentTextExtensions Class" Url="html/T-Microsoft.Extensions.DependencyInjection.LocalizedContentTextExtensions.htm">
+      <HelpTOCNode Title="LocalizedContentTextExtensions Members" Url="html/AllMembers.T-Microsoft.Extensions.DependencyInjection.LocalizedContentTextExtensions.htm" />
+      <HelpTOCNode Id="ccc07615-1880-4679-8e62-c373a78d3f9c" Title="LocalizedContentTextExtensions Methods" Url="html/Methods.T-Microsoft.Extensions.DependencyInjection.LocalizedContentTextExtensions.htm">
+        <HelpTOCNode Title="AddLocalizedContentTextRepository Method " Url="html/M-Microsoft.Extensions.DependencyInjection.LocalizedContentTextExtensions.AddLocalizedContentTextRepository.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="357a4035-edcf-47fe-8635-1d3257472f97" Title="LocalizedGroupDataItemExtensions Class" Url="html/T-Microsoft.Extensions.DependencyInjection.LocalizedGroupDataItemExtensions.htm">
+      <HelpTOCNode Title="LocalizedGroupDataItemExtensions Members" Url="html/AllMembers.T-Microsoft.Extensions.DependencyInjection.LocalizedGroupDataItemExtensions.htm" />
+      <HelpTOCNode Id="20d50302-7481-4973-b341-f323c36ff599" Title="LocalizedGroupDataItemExtensions Methods" Url="html/Methods.T-Microsoft.Extensions.DependencyInjection.LocalizedGroupDataItemExtensions.htm">
+        <HelpTOCNode Title="AddLocalizedGroupDataItemRepository Method " Url="html/M-Microsoft.Extensions.DependencyInjection.LocalizedGroupDataItemExtensions.AddLocalizedGroupDataItemRepository.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
