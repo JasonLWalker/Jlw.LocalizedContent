@@ -2,11 +2,8 @@ name: Build Wiki
 
 on:
   push:
-    paths:
-      # Trigger only when wiki directory changes
-      - 'Help/**'
     branches:
-      # And only on master branch
+      # And only on main branch
       - main
   workflow_dispatch:
 
