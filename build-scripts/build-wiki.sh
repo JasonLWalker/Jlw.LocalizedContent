@@ -43,9 +43,9 @@ dotnet tool install -g XMLDoc2Markdown
 dotnet restore
 
 # Build with dotnet
-dotnet build --version-suffix=$versionSuffix --configuration $buildType --no-restore
+dotnet build --version-suffix=$versionSuffix --configuration $buildType --no-restore $packageName
 
-dotnet publish 
+dotnet publish $packageName
 
 xmldoc2md ./$packageName/bin/$buildType/netstandard2.0/publish/$packageName.dll ./Help --github-pages --back-button --index-page-name home
 
