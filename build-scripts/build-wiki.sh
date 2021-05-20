@@ -41,7 +41,7 @@ fi
 dotnet tool install -g XMLDoc2Markdown
 
 # Build with dotnet
-dotnet build --version-suffix=$versionSuffix --configuration $buildType
+dotnet build --configuration $buildType
 
 dotnet publish 
 
