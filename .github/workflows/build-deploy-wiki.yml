@@ -21,7 +21,7 @@ jobs:
         /bin/bash ./build-scripts/setenv.sh
     - name: Run build script
       run: |
-        /bin/bash ./build-scripts/build-wiki.sh -p "Jlw.Data.LocalizedContent" -b "Release" -u ${{ secrets.NUGET_USER }} -e ${{ secrets.GPR_EMAIL }} -t ${{ env.GITHUB_TOKEN }}
+        /bin/bash ./build-scripts/build-wiki.sh -p "Jlw.Data.LocalizedContent" -b "Release" -u ${{ secrets.NUGET_USER }} -e ${{ secrets.GPR_EMAIL }} -t ${{ secrets.GITHUB_TOKEN }}
   cleanup:
     needs: build-wiki
     if: always()
