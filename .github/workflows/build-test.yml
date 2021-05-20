@@ -5,6 +5,10 @@ on:
     branches: #all branches that are NOT master.
       - '*'
       - '!main'
+    paths:
+      - '!Help/**'
+      - '!.github/**'
+      - '!build-scripts/**'
   pull_request:
     branches: [ main ]
 
