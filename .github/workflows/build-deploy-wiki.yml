@@ -14,7 +14,7 @@ jobs:
         /bin/bash ./build-scripts/setenv.sh
     - name: Run build script
       run: |
-        ./build-scripts/build-wiki.sh "Jlw.Data.LocalizedContent" "Release"
+        /bin/bash ./build-scripts/build-wiki.sh "Jlw.Data.LocalizedContent" "Release"
     # Additional steps to generate documentation in "Documentation" directory
     - name: Upload Documentation to Wiki
       uses: SwiftDocOrg/github-wiki-publish-action@v1
