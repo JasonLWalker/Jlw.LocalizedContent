@@ -63,13 +63,16 @@ git init
 
 
 # Setup credentials
+echo "Setting up git credentials"
 git config user.name $githubUser
 git config user.email $githubEmail
 
+
+echo "Pulling current wiki from repo"
 git pull https://$githubToken@github.com/$githubUser/$repo.wiki.git
 
 
-
+echo "Copying from source to temp folder"
 rsync -av --delete $workingDir $TEMP_CLONE_FOLDER/ --exclude .git
 
 
