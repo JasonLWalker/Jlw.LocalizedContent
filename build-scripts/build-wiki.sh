@@ -5,7 +5,7 @@ do
     case "${flag}" in
         p) packageName=${OPTARG};;
         d) workingDir=${OPTARG};;
-        b) buildType==${OPTARG};;
+        b) buildType=${OPTARG};;
         u) githubUser=${OPTARG};;
         e) githubEmail=${OPTARG};;
         t) githubToken=${OPTARG};;
@@ -40,8 +40,10 @@ fi
 # Install dependencies
 dotnet tool install -g XMLDoc2Markdown
 
+dotnet restore
+
 # Build with dotnet
-dotnet build 
+dotnet build --version-suffix=$versionSuffix --configuration $buildType --no-restore
 
 dotnet publish 
 
