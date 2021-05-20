@@ -45,7 +45,7 @@ dotnet restore
 # Build with dotnet
 dotnet build --version-suffix=$versionSuffix --configuration $buildType --no-restore
 
-dotnet publish --no-build --configuration $buildType --verbosity normal "${packageName}"
+dotnet publish 
 
 xmldoc2md ./$packageName/bin/$buildType/netstandard2.0/publish/$packageName.dll ./Help --github-pages --back-button --index-page-name home
 
@@ -75,7 +75,7 @@ rsync -av --delete $workingDir $TEMP_CLONE_FOLDER/ --exclude .git
 
 git add .
 git commit -m "$message"
-git push --set-upstream https://$githubUser:$githubToken@github.com/$githubUser/$repo.wiki.git master || git push --set-upstream https://$githubToken@github.com/$githubUser/$repo.wiki.git master
+git push --set-upstream https://${githubUser}:${githubToken}@github.com/$githubUser/$repo.wiki.git master || git push --set-upstream https://$githubToken@github.com/$githubUser/$repo.wiki.git master
 
 cd ..
 rm -rf $TEMP_CLONE_FOLDER
