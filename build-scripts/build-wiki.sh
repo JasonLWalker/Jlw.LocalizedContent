@@ -78,7 +78,7 @@ rsync -av --delete $workingDir $TEMP_CLONE_FOLDER/ --exclude .git
 
 git add .
 git commit -m "$message"
-git push --set-upstream https://$githubToken@github.com/$githubUser/$repo.wiki.git master
+git push --set-upstream https://${githubUser}:${githubToken}@github.com/$githubUser/$repo.wiki.git master
 
 cd ..
 rm -rf $TEMP_CLONE_FOLDER
