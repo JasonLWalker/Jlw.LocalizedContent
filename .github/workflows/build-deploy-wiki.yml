@@ -5,16 +5,16 @@ on:
 
 jobs:
   build-wiki:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
     - name: Config Environment Variables
       run: |
-        ./build-scripts/setenv.ps1
+        /bin/bash ./build-scripts/setenv.sh
     - name: Run build script
       run: |
-        ./build-scripts/build-wiki.ps1 "Jlw.Data.LocalizedContent" "Release"
+        ./build-scripts/build-wiki.sh "Jlw.Data.LocalizedContent" "Release"
     # Additional steps to generate documentation in "Documentation" directory
     - name: Upload Documentation to Wiki
       uses: SwiftDocOrg/github-wiki-publish-action@v1
