@@ -40,10 +40,8 @@ fi
 # Install dependencies
 dotnet tool install -g XMLDoc2Markdown
 
-dotnet restore
-
 # Build with dotnet
-dotnet build --version-suffix=$versionSuffix --configuration $buildType --no-restore
+dotnet build --version-suffix=$versionSuffix --configuration $buildType
 
 dotnet publish 
 
