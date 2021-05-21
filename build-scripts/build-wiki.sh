@@ -24,7 +24,7 @@ if [ ! $packageName ]; then
 fi
 
 if [ ! $workingDir ]; then 
-    export workingDir="$(pwd)/Help"
+    export workingDir="$(pwd)/Help/"
 fi
 
 if [ ! $repo ]; then
