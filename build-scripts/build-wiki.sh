@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# adapted from the github action https://github.com/Andrew-Chen-Wang/github-wiki-action/
+
 while getopts p:d:b:u:e:t:r: flag
 do
     case "${flag}" in
@@ -40,11 +42,6 @@ fi
 # Install dependencies
 dotnet tool install -g XMLDoc2Markdown
 
-#dotnet restore
-
-# Build with dotnet
-#dotnet build --version-suffix=$versionSuffix --configuration $buildType --no-restore $packageName
-
 dotnet publish --configuration $buildType  --verbosity normal $packageName
 
 xmldoc2md ./$packageName/bin/$buildType/netstandard2.0/publish/$packageName.dll ./Help --github-pages --back-button --index-page-name home
@@ -52,8 +49,6 @@ xmldoc2md ./$packageName/bin/$buildType/netstandard2.0/publish/$packageName.dll 
 
 TEMP_CLONE_FOLDER="temp_wiki_$GITHUB_SHA"
 #TEMP_EXCLUDED_FILE="temp_wiki_excluded_$GITHUB_SHA.txt"
-message=$(git log -1 --format=%B)
-
 
 echo "Configuring wiki git..."
 mkdir $TEMP_CLONE_FOLDER
@@ -71,10 +66,16 @@ git config user.email $githubEmail
 echo "Pulling current wiki from repo"
 git pull https://$githubToken@github.com/$githubUser/$repo.wiki.git
 
+cd ..
+
 
 echo "Copying from source to temp folder"
 rsync -av --delete $workingDir $TEMP_CLONE_FOLDER/ --exclude .git
 
+echo "Pushing to Wiki"
+cd $TEMP_CLONE_FOLDER
+
+message=$(git log -1 --format=%B)
 
 git add .
 git commit -m "$message"
