@@ -13,36 +13,38 @@ on:
   pull_request:
     branches: [ main, staging ]
   workflow_dispatch:
-
+env:
+  PACKAGE_NAME: "Jlw.Data.LocalizedContent"
+  BUILD_TYPE: "Release"
 jobs:
   build-test:
     runs-on: windows-latest
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-    - name: Config Environment Variables
-      run: |
-        ./build-scripts/setenv.ps1
+    #- name: Config Environment Variables
+    #  run: |
+    #    ./build-scripts/setenv.ps1
     - name: Run build script
       run: |
-        ./build-scripts/build.ps1 "Jlw.Data.LocalizedContent" "Release"
+        ./build-scripts/build.ps1 ${{ env.PACKAGE_NAME }} ${{ env.BUILD_TYPE }}
     - name: Run test script
       run: |
-        ./build-scripts/test.ps1 "Jlw.Data.LocalizedContent.Tests" "Release"
+        ./build-scripts/test.ps1 ${{ env.PACKAGE_NAME }} ${{ env.BUILD_TYPE }}
 
-  cleanup:
-    needs: build-test
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-    - name: Config Environment Variables
-      run: |
-        /bin/bash ./build-scripts/setenv.sh
-    - name: Delete Artifacts
-      uses: geekyeggo/delete-artifact@v1
-      with:
-        name: ${{ env.PKGNAME }}
-        failOnError: false
+    #cleanup:
+    #needs: build-test
+    #if: always()
+    #runs-on: ubuntu-latest
+    #steps:
+    #- name: Checkout Repository
+    #  uses: actions/checkout@v2
+    #- name: Config Environment Variables
+    #  run: |
+    #    /bin/bash ./build-scripts/setenv.sh
+    #- name: Delete Artifacts
+    #  uses: geekyeggo/delete-artifact@v1
+    #  with:
+    #    name: ${{ jobs.build-test.env.PKGNAME }}
+    #    failOnError: false
 
