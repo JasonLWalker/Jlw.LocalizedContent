@@ -26,7 +26,7 @@ jobs:
         ./build-scripts/build.ps1 ${{ env.PACKAGE_NAME }} ${{ env.BUILD_TYPE }}
     - name: Run test script
       run: |
-        ./build-scripts/test.ps1 ${{ env.PACKAGE_NAME }} ${{ env.BUILD_TYPE }}
+        ./build-scripts/test.ps1 "${{ env.PACKAGE_NAME }}.Tests" ${{ env.BUILD_TYPE }}
 
     #cleanup:
     #needs: build-test
