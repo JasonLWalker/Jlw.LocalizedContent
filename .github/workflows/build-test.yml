@@ -7,7 +7,10 @@ on:
     paths-ignore:
       [ 'Help/**', 'docs/**', '.github/**', 'build-scripts/**' ]
   pull_request:
-    branches: [ main, staging ]
+    branches: 
+      [ main, staging ]
+    paths-ignore:
+      [ 'Help/**', 'docs/**', '.github/**', 'build-scripts/**' ]
   workflow_dispatch:
 env:
   PACKAGE_NAME: "Jlw.Data.LocalizedContent"
@@ -18,29 +21,9 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-    #- name: Config Environment Variables
-    #  run: |
-    #    ./build-scripts/setenv.ps1
     - name: Run build script
       run: |
         ./build-scripts/build.ps1 ${{ env.PACKAGE_NAME }} ${{ env.BUILD_TYPE }}
     - name: Run test script
       run: |
         ./build-scripts/test.ps1 "${{ env.PACKAGE_NAME }}.Tests" ${{ env.BUILD_TYPE }}
-
-    #cleanup:
-    #needs: build-test
-    #if: always()
-    #runs-on: ubuntu-latest
-    #steps:
-    #- name: Checkout Repository
-    #  uses: actions/checkout@v2
-    #- name: Config Environment Variables
-    #  run: |
-    #    /bin/bash ./build-scripts/setenv.sh
-    #- name: Delete Artifacts
-    #  uses: geekyeggo/delete-artifact@v1
-    #  with:
-    #    name: ${{ jobs.build-test.env.PKGNAME }}
-    #    failOnError: false
-
