@@ -2,14 +2,10 @@ name: Build and Test
 
 on:
   push:
-    branches: #all branches that are NOT master.
-      - '*'
-      - '!main'
+    branches-ignore: #all branches that are NOT main or staging.
+      [ 'main', 'staging' ]
     paths-ignore:
-      - '!Help/**'
-      - '!docs/**'
-      - '!.github/**'
-      - '!build-scripts/**'
+      [ 'Help/**', 'docs/**', '.github/**', 'build-scripts/**' ]
   pull_request:
     branches: [ main, staging ]
   workflow_dispatch:
