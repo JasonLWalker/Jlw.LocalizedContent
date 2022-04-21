@@ -32,5 +32,5 @@ jobs:
         id: set-version-number
         #shell: powershell
         run: |
-          echo "${{ env }}"
+          echo "{path} ${{ path }}"
           
