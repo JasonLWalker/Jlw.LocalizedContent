@@ -32,6 +32,6 @@ jobs:
         id: set-version-number
         shell: pwsh
         run: |
-          "$GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 $env:buildConfiguration"
+          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 ${{ inputs.buildConfiguration }}"
           Invoke-Expression "dir env:"
           
