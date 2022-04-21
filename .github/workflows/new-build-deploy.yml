@@ -30,25 +30,24 @@ jobs:
       INPUT_VERSION_SUFFIX: ${{ github.event.inputs.versionSuffix }}
     steps:
       - uses: actions/checkout@v3
-      #- name: Setup dotnet
-      #  uses: actions/setup-dotnet@v2
-      #  with:
-      #    dotnet-version: '6.x'
-      #- uses: actions/cache@v3
-      #  with:
-      #    path: ~/.nuget/packages
-      #    # Look to see if there is a cache hit for the corresponding requirements file
-      #    key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-      #    restore-keys: |
-      #      ${{ runner.os }}-nuget
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.x'
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
       - name: Set version number
-        #shell: pwsh
         run: |
           ${{ env.BUILD_WORKSPACE_PATH }}/build-scripts/set-version-property.ps1 '${{ env.INPUT_BUILD_CONFIG }}' '${{ env.INPUT_VERSION_SUFFIX }}' '${{ env.INPUT_VERSION_PREFIX }}'
           "BUILD_VERSION=$vPrefix$vSuffix" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
         shell: pwsh
-      - name: Output environment variables
-        run: |
-          Invoke-Expression "dir env:"
-        shell: pwsh
+      #- name: Output environment variables
+      #  run: |
+      #    Invoke-Expression "dir env:"
+      #  shell: pwsh
           
