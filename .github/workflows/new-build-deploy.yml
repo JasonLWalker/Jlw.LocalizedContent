@@ -28,26 +28,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: '6.x'
-      - uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          # Look to see if there is a cache hit for the corresponding requirements file
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget
+      #- name: Setup dotnet
+      #  uses: actions/setup-dotnet@v2
+      #  with:
+      #    dotnet-version: '6.x'
+      #- uses: actions/cache@v3
+      #  with:
+      #    path: ~/.nuget/packages
+      #    # Look to see if there is a cache hit for the corresponding requirements file
+      #    key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-nuget
       - name: Set version number
-        id: set-version-number
-        shell: pwsh
+        #shell: pwsh
         run: |
-          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '${{ inputs.buildconfiguration }}' '${{ inputs.versionsuffix }}' '${{ inputs.versionprefix }}' "
+          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 -buildType ${{ inputs.buildconfiguration }} -versionSuffix ${{ inputs.versionsuffix }} -versionPrefix ${{ inputs.versionprefix }} "
           echo "BUILD_VERSION=$vPrefix$vSuffix" >> $env:GITHUB_ENV
-      - name: Output environment variables
-        id: show-env
         shell: pwsh
+      - name: Output environment variables
         run: |
           Invoke-Expression "dir env:"
+        shell: pwsh
           
