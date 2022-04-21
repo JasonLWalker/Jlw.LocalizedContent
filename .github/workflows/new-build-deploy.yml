@@ -32,9 +32,9 @@ jobs:
         id: set-version-number
         shell: pwsh
         run: |
-          $buildVersion = Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 ${{ inputs.buildConfiguration }}" -outvariable version
+          $buildVersion = Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 ${{ inputs.buildConfiguration }}"
           echo "::export-variable name=BUILD_VERSION::$buildVersion"
-          echo "::export-variable name=BUILD_VERSION2::Test2.1"
+          echo "::export-variable name=BUILD_VERSION2::$vPrefix$vSuffix"
           echo "buildVersion : $buildVersion"
           echo "Version : $version"
       - name: Output environment variables
