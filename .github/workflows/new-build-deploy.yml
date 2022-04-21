@@ -1,7 +1,7 @@
 name: New Build and Deploy (Alpha)
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
         buildconfig:
             description: 'Build Configuration'
