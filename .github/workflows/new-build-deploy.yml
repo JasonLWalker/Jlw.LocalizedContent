@@ -14,11 +14,23 @@ on:
 
 jobs:
   build-test-deploy:
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.x'
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
       - name: Set version number
         id: set-version-number
+        #shell: powershell
         run: |
-          echo "{path}"
+          echo "${{ env }}"
           
