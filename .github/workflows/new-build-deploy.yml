@@ -1,16 +1,13 @@
 name: New Build and Deploy (Alpha)
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
-        buildConfig:
+        buildconfig:
             description: 'Build Configuration'
             required: true
             default: 'Debug'
-            type: choice
-            options:
-            - Debug
-            - Release
+            type: string
         versionPrefix:
             description: 'Version Number'
             required: false
@@ -28,8 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       INPUT_VERSION_PREFIX: ${{ inputs.versionPrefix }}
-      INPUT_VERSION_SUFFIX: ${{ inputs.versionSuffix }}
-      INPUT_BUILD_CONFIG: ${{ inputs.buildConfig }}
+      INPUT_VERSION_SUFFIX: ${{ github.event.inputs.versionSuffix }}
+      INPUT_BUILD_CONFIG: ${{ github.event.inputs.buildconfig }}
     steps:
       - uses: actions/checkout@v3
       #- name: Setup dotnet
