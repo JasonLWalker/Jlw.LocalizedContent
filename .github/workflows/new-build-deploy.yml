@@ -11,6 +11,17 @@ on:
             options:
             - Debug
             - Release
+        versionPrefix:
+            description: 'Version Number'
+            required: false
+            default: ''
+            type: string
+        versionSuffix:
+            description: 'Version Suffix'
+            required: false
+            default: ''
+            type: string
+
 
 jobs:
   build-test-deploy:
@@ -32,10 +43,8 @@ jobs:
         id: set-version-number
         shell: pwsh
         run: |
-          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 ${{ inputs.buildConfiguration }}"
+          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '${{ inputs.buildConfiguration }}' '${{ inputs.versionSuffix }}' '${{ inputs.versionPrefix }}' "
           echo "BUILD_VERSION=$vPrefix$vSuffix" >> $env:GITHUB_ENV
-          echo "buildVersion : $buildVersion"
-          echo "Version : $env:BUILD_VERSION"
       - name: Output environment variables
         id: show-env
         shell: pwsh
