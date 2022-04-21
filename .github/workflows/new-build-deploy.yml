@@ -3,7 +3,7 @@ name: New Build and Deploy (Alpha)
 on:
   workflow_dispatch:
     inputs:
-        buildconfig:
+        buildConfig:
             description: 'Build Configuration'
             required: true
             default: 'Debug'
@@ -24,9 +24,9 @@ jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
     env:
-      INPUT_VERSION_PREFIX: ${{ inputs.versionPrefix }}
+      INPUT_VERSION_PREFIX: ${{ github.event.inputs.versionPrefix }}
       INPUT_VERSION_SUFFIX: ${{ github.event.inputs.versionSuffix }}
-      INPUT_BUILD_CONFIG: ${{ github.event.inputs.buildconfig }}
+      INPUT_BUILD_CONFIG: ${{ github.event.inputs.buildConfig }}
     steps:
       - uses: actions/checkout@v3
       #- name: Setup dotnet
@@ -43,12 +43,12 @@ jobs:
       - name: Set version number
         #shell: pwsh
         run: |
-          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '${{ inputs.buildConf }}' '${{ inputs.versionSuffix }}' '${{ inputs.versionPrefix }}' "
+          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '$env:INPUT_BUILD_CONFIG' '$env:INPUT_VERSION_SUFFIX' '$env:INPUT_VERSION_PREFIX' "
           #$echo "BUILD_VERSION=$vPrefix$vSuffix" 
-          Write-Output "::export-variable name=BUILD_VERSION::$vPrefix$vSuffix"
         shell: pwsh
       - name: Output environment variables
         run: |
+          Write-Output "::get-input name=buildConfig"
           Invoke-Expression "dir env:"
         shell: pwsh
           
