@@ -20,5 +20,5 @@ jobs:
       - name: Set version number
         id: set-version-number
         run: |
-          echo "${{ $GITHUB_ENV }}"
+          echo "{path}"
           
