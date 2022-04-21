@@ -16,7 +16,7 @@ on:
         versionSuffix:
             description: 'Version Suffix'
             required: false
-            default: ''
+            default: '-alpha'
             type: string
 
 
