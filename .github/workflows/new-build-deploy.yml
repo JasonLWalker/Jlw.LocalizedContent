@@ -37,6 +37,9 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+          source-url: https://nuget.pkg.github.com/${{ github.repository.owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
@@ -60,7 +63,7 @@ jobs:
         run: ${{ env.BUILD_WORKSPACE_PATH }}/build-scripts/build.ps1 -buildType '${{ env.INPUT_BUILD_CONFIG }}' -buildSuffix '${{ env.BUILD_VERSION_SUFFIX }}' -buildPrefix '${{ env.BUILD_VERSION_PREFIX }}'
       - name: Test
         shell: pwsh
-        run: dotnet test --no-build --no-restore --configuration '${{ env.INPUT_BUILD_CONFIGURATION }}' --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+        run: dotnet test --no-build --no-restore --configuration '${{ env.INPUT_BUILD_CONFIG }}' --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       - name: Upload dotnet test results
         uses: actions/upload-artifact@v3
         with:
@@ -68,3 +71,7 @@ jobs:
           path: TestResults-${{ matrix.dotnet-version }}
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
+      - name: Publish the packages to GPR
+        run: dotnet nuget push **/bin/${{ env.INPUT_BUILD_CONFIG }}/*.nupkg
+      - name: Publish the source packages to GPR
+        run: dotnet nuget push **/bin/${{ env.INPUT_BUILD_CONFIG }}/*.snupkg
