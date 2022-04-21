@@ -3,7 +3,7 @@ name: New Build and Deploy (Alpha)
 on:
   workflow_dispatch:
     inputs:
-        buildConfiguration:
+        buildconfiguration:
             description: 'Build Configuration'
             required: true
             default: 'Debug'
@@ -11,12 +11,12 @@ on:
             options:
             - Debug
             - Release
-        versionPrefix:
+        versionprefix:
             description: 'Version Number'
             required: false
             default: ''
             type: string
-        versionSuffix:
+        versionsuffix:
             description: 'Version Suffix'
             required: false
             default: ''
@@ -27,6 +27,11 @@ jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Show Inputs
+        shell: pwsh
+        run: |
+          Invoke-Expression "dir inputs:"
+
       - uses: actions/checkout@v3
       - name: Setup dotnet
         uses: actions/setup-dotnet@v2
@@ -43,7 +48,7 @@ jobs:
         id: set-version-number
         shell: pwsh
         run: |
-          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '${{ inputs.buildConfiguration }}' '${{ inputs.versionSuffix }}' '${{ inputs.versionPrefix }}' "
+          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '${{ inputs.buildconfiguration }}' '${{ inputs.versionsuffix }}' '${{ inputs.versionprefix }}' "
           echo "BUILD_VERSION=$vPrefix$vSuffix" >> $env:GITHUB_ENV
       - name: Output environment variables
         id: show-env
