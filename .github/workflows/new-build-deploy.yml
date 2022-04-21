@@ -51,6 +51,9 @@ jobs:
       - name: Build / Pack
         shell: pwsh
         run: ${{ env.BUILD_WORKSPACE_PATH }}/build-scripts/build.ps1 -buildType '${{ env.INPUT_BUILD_CONFIG }}' -buildSuffix '${{ env.BUILD_VERSION_SUFFIX }}' -buildPrefix '${{ env.BUILD_VERSION_PREFIX }}'
+      - name: Test
+        shell: pwsh
+        run: dotnet test --no-build --no-restore --configuration '${{ env.INPUT_BUILD_CONFIGURATION }}'
       #- name: Output environment variables
       #  run: |
       #    Invoke-Expression "dir env:"
