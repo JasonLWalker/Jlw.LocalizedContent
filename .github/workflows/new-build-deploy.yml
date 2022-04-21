@@ -26,7 +26,6 @@ jobs:
     env:
       INPUT_VERSION_PREFIX: ${{ github.event.inputs.versionPrefix }}
       INPUT_VERSION_SUFFIX: ${{ github.event.inputs.versionSuffix }}
-      INPUT_BUILD_CONFIG: ${{ github.event.inputs.buildConfig }}
     steps:
       - uses: actions/checkout@v3
       #- name: Setup dotnet
