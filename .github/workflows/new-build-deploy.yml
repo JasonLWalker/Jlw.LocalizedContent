@@ -43,7 +43,7 @@ jobs:
       - name: Set version number
         #shell: pwsh
         run: |
-          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '$env:INPUT_BUILD_CONFIG' '$env:INPUT_VERSION_SUFFIX' '$env:INPUT_VERSION_PREFIX' "
+          Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '${{ env.INPUT_BUILD_CONFIG }}' '${{ env.INPUT_VERSION_SUFFIX }}' '${{ env.INPUT_VERSION_PREFIX }}' "
           "BUILD_VERSION=$vPrefix$vSuffix" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
         shell: pwsh
       - name: Output environment variables
