@@ -6,4 +6,4 @@ if (-Not ($versionPrefix)){
 
 $global:vPrefix = $versionPrefix
 $global:vSuffix = $versionSuffix
-Write-Output $versionPrefix$versionSuffix
+Write-Host $versionPrefix$versionSuffix
