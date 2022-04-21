@@ -42,12 +42,12 @@ jobs:
       - name: Set version number
         #shell: pwsh
         run: |
+          Write-Output "::get-input name=buildConfig"
           Invoke-Expression "$env:GITHUB_WORKSPACE/build-scripts/set-version-property.ps1 '$env:INPUT_BUILD_CONFIG' '$env:INPUT_VERSION_SUFFIX' '$env:INPUT_VERSION_PREFIX' "
           #$echo "BUILD_VERSION=$vPrefix$vSuffix" 
         shell: pwsh
       - name: Output environment variables
         run: |
-          Write-Output "::get-input name=buildConfig"
           Invoke-Expression "dir env:"
         shell: pwsh
           
