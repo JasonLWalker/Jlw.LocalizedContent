@@ -72,6 +72,11 @@ jobs:
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
       - name: Publish the packages to GPR
-        run: dotnet nuget push -s **/bin/${{ env.INPUT_BUILD_CONFIG }}/*.nupkg -k ${{secrets.GITHUB_TOKEN}} --skip-duplicate
+        run: dotnet nuget push **/bin/${{ env.INPUT_BUILD_CONFIG }}/*.nupkg  -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -k ${{secrets.GITHUB_TOKEN }} --skip-duplicate
       - name: Publish the source packages to GPR
-        run: dotnet nuget push -ss **/bin/${{ env.INPUT_BUILD_CONFIG }}/*.snupkg -sk ${{secrets.GITHUB_TOKEN}} --skip-duplicate
+        run: dotnet nuget push **/bin/${{ env.INPUT_BUILD_CONFIG }}/*.snupkg -ss https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -sk ${{secrets.GITHUB_TOKEN }} --skip-duplicate
+
+      - name: Publish the packages to NuGet
+        run: dotnet nuget push **/bin/${{ env.INPUT_BUILD_CONFIG }}/*.nupkg  -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY }} --skip-duplicate
+      - name: Publish the source packages to NuGet
+        run: dotnet nuget push **/bin/${{ env.INPUT_BUILD_CONFIG }}/*.snupkg -ss https://api.nuget.org/v3/index.json -sk ${{secrets.NUGET_KEY }} --skip-duplicate
