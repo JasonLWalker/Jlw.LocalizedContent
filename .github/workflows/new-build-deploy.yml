@@ -30,7 +30,7 @@ jobs:
             ${{ runner.os }}-nuget
       - name: Set version number
         id: set-version-number
-        shell: pwsh
+        #shell: pwsh
         run: |
-          dir env:
+            powershell "dir env:"
           
