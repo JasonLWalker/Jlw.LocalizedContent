@@ -69,8 +69,8 @@ jobs:
       - name: Create Deployment Packages
         shell: pwsh
         run: |
-          Compress-Archive -Path "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.REPO_PKGNAME }}/bin/${{ env.INPUT_BUILD_CONFIG }}/*"  -LiteralPath README.md, LICENSE -DestinationPath "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.REPO_PKGNAME }}.${{ env.PKGVERSION }}.zip"
-          Compress-Archive -Path "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.RCL_PKGNAME }}/bin/${{ env.INPUT_BUILD_CONFIG }}/*"  -LiteralPath README.md, LICENSE -DestinationPath "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.RCL_PKGNAME }}.${{ env.PKGVERSION }}.zip"
+          Compress-Archive -Path "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.REPO_PKGNAME }}/bin/${{ env.INPUT_BUILD_CONFIG }}/*", README.md, LICENSE -DestinationPath "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.REPO_PKGNAME }}.${{ env.PKGVERSION }}.zip"
+          Compress-Archive -Path "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.RCL_PKGNAME }}/bin/${{ env.INPUT_BUILD_CONFIG }}/*", README.md, LICENSE -DestinationPath "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.RCL_PKGNAME }}.${{ env.PKGVERSION }}.zip"
 
       - name: Create DataRepo Release
         id: create_datarepo_release
