@@ -31,6 +31,7 @@ jobs:
       INPUT_BUILD_CONFIG: ${{ github.event.inputs.buildConfig }}
       INPUT_VERSION_PREFIX: ${{ github.event.inputs.versionPrefix }}
       INPUT_VERSION_SUFFIX: ${{ github.event.inputs.versionSuffix }}
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
     steps:
       - uses: actions/checkout@v3
       - name: Setup dotnet
@@ -75,6 +76,8 @@ jobs:
       - name: Create DataRepo Release
         id: create_datarepo_release
         uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: REPO-${{ env.PKGVERSION }} 
           release_name: DataRepo Release ${{ env.REPO_PKGNAME }}
@@ -83,6 +86,8 @@ jobs:
       - name: Upload Release Asset
         id: upload-datarepo-release-asset 
         uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_datarepo_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.REPO_PKGNAME }}.${{ env.PKGVERSION }}.zip"
@@ -91,6 +96,8 @@ jobs:
       - name: Create RCL Release
         id: create_rcl_release
         uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: RCL-${{ env.PKGVERSION }} 
           release_name: RCL Release ${{ env.RCL_PKGNAME }}
@@ -99,6 +106,8 @@ jobs:
       - name: Upload RCL Release Asset
         id: upload-rcl-release-asset 
         uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_rcl_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: "${{ env.BUILD_WORKSPACE_PATH }}/${{ env.RCL_PKGNAME }}.${{ env.PKGVERSION }}.zip"
