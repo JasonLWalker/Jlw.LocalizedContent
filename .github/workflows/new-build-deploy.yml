@@ -31,7 +31,6 @@ jobs:
       INPUT_BUILD_CONFIG: ${{ github.event.inputs.buildConfig }}
       INPUT_VERSION_PREFIX: ${{ github.event.inputs.versionPrefix }}
       INPUT_VERSION_SUFFIX: ${{ github.event.inputs.versionSuffix }}
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
     steps:
       - uses: actions/checkout@v3
       - name: Setup dotnet
