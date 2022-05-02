@@ -31,6 +31,7 @@ jobs:
       INPUT_BUILD_CONFIG: ${{ github.event.inputs.buildConfig }}
       INPUT_VERSION_PREFIX: ${{ github.event.inputs.versionPrefix }}
       INPUT_VERSION_SUFFIX: ${{ github.event.inputs.versionSuffix }}
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
     steps:
       - uses: actions/checkout@v3
       - name: Setup dotnet
@@ -50,9 +51,10 @@ jobs:
       - name: Set version number
         run: |
           ${{ env.BUILD_WORKSPACE_PATH }}/build-scripts/set-version-property.ps1 '${{ env.INPUT_BUILD_CONFIG }}' '${{ env.INPUT_VERSION_SUFFIX }}' '${{ env.INPUT_VERSION_PREFIX }}'
-          "BUILD_VERSION=$vPrefix$vSuffix" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "BUILD_VERSION_PREFIX=$vPrefix" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          "BUILD_VERSION_SUFFIX=$vSuffix" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          #"BUILD_VERSION=$vPrefix$vSuffix" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          #"BUILD_VERSION_PREFIX=$vPrefix" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          #"BUILD_VERSION_SUFFIX=$vSuffix" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          ${{ env.BUILD_WORKSPACE_PATH }}/build-scripts/setenv.ps1
         shell: pwsh
       #- name: Output environment variables
       #  run: |
@@ -71,6 +73,48 @@ jobs:
           path: TestResults-${{ matrix.dotnet-version }}
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
+
+      - name: Create DataRepo Release
+        id: create_datarepo_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: REPO-${{ env.PKGVERSION }} 
+          release_name: DataRepo Release ${{ env.PKGNAME }}
+          draft: true
+          prerelease: true
+      - name: Upload Release Asset
+        id: upload-datarepo-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_datarepo_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: "./${{ env.PKGNAME }}.${{ env.PKGVERSION }}.zip"
+          asset_name: "${{ env.PKGNAME }}.${{ env.PKGVERSION }}.zip"
+          asset_content_type: application/zip
+      - name: Create RCL Release
+        id: create_rcl_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: RCL-${{ env.PKGVERSION }} 
+          release_name: RCL Release ${{ env.PKGNAME }}
+          draft: true
+          prerelease: true
+      - name: Upload RCL Release Asset
+        id: upload-rcl-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_rcl_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: "./${{ env.PKGNAME }}.${{ env.PKGVERSION }}.zip"
+          asset_name: "${{ env.PKGNAME }}.${{ env.PKGVERSION }}.zip"
+          asset_content_type: application/zip
+
       - name: Publish the packages to GPR
         run: dotnet nuget push ${{ env.BUILD_WORKSPACE_PATH }}/**/*.nupkg  -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -k ${{secrets.GITHUB_TOKEN }} --skip-duplicate
       - name: Publish the source packages to GPR
@@ -78,5 +122,5 @@ jobs:
 
       - name: Publish the packages to NuGet
         run: dotnet nuget push ${{ env.BUILD_WORKSPACE_PATH }}/**/*.nupkg  -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY }} --skip-duplicate
-      - name: Publish the source packages to NuGet
-        run: dotnet nuget push ${{ env.BUILD_WORKSPACE_PATH }}/**/*.snupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY }} --skip-duplicate
+      #- name: Publish the source packages to NuGet
+      #  run: dotnet nuget push ${{ env.BUILD_WORKSPACE_PATH }}/**/*.snupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_KEY }} --skip-duplicate
