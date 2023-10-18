@@ -1,7 +1,11 @@
+@using Microsoft.Extensions.DependencyInjection
+@using Jlw.Web.Rcl.LocalizedContent
+@inject IWizardAdminSettings wizardSettings
 @{
     ViewData["Title"] = ViewData["PageTitle"];
 
-    string jsRoot = "LocalizedContent";
+    string version = wizardSettings.Version;
+    string jsRoot = LocalizedContentExtensions.AreaName;
     string apiUrl = (string.IsNullOrWhiteSpace(ViewData["apiOverrideUrl"]?.ToString())) ? Url.Action("Index", "Api", new { Area = "LocalizedContentText", groupKey = (string)null, fieldKey = (string)null }) + "/" : ViewData["apiOverrideUrl"]?.ToString();
     string adminUrl = (string.IsNullOrWhiteSpace(ViewData["adminOverrideUrl"]?.ToString())) ? Url.Action("Index", "Admin", new { Area = "LocalizedContentText", groupKey = (string)null, fieldKey = (string)null }) : ViewData["adminOverrideUrl"]?.ToString();
     string adminFieldUrl = (string.IsNullOrWhiteSpace(ViewData["adminFieldOverrideUrl"]?.ToString())) ? Url.Action("Index", new { Area = "LocalizedContentField", groupKey = (string)null, fieldKey = (string)null }) : ViewData["adminFieldOverrideUrl"]?.ToString();
@@ -9,7 +13,7 @@
     if (!(ViewData["Breadcrumb"] is IEnumerable<KeyValuePair<string, string>>))
     {
         var aBreadcrumb = new List<KeyValuePair<string, string>>()
-        {
+{
             new KeyValuePair<string, string>(Url.Action("Index", "Home"), "Home"),
             new KeyValuePair<string, string>(Url.Action("Index", "Admin"), "Administration"),
         };
@@ -31,8 +35,6 @@
 
 @section Scripts {
     <script>
-
-
     function jlwDefer(fnCb) {
         if (typeof fnCb != 'function')
             return;
@@ -47,18 +49,24 @@
         function onPageLoadInit() {
             function fnInit() {
                 window.jlwUtility.showPleaseWait();
-                $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/dataTables.bootstrap5.min.css")"));
-                $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/toastr.min.css")"));
                 $.when(
-                    window.jlwUtility.lazyLoadLibrary(jQuery.fn.DataTable,"@Url.Content($"~/{jsRoot}/js/jquery.dataTables.min.js")"),
-                    window.jlwUtility.lazyLoadLibrary(window.libJlwAppBuilder, "@Url.Content($"~/{jsRoot}/js/libJlwAppBuilder.min.js")"),
-                    window.jlwUtility.lazyLoadLibrary(window.bootbox, "@Url.Content($"~/{jsRoot}/js/bootbox.min.js")"),
-                    window.jlwUtility.lazyLoadLibrary(window.fontawesome, "@Url.Content($"~/{jsRoot}/font-awesome/js/fontawesome.min.js")"),
-                    window.jlwUtility.lazyLoadLibrary(window.fontawesome, "@Url.Content($"~/{jsRoot}/font-awesome/js/solid.min.js")")
-
+                    window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/css/bootstrap.min.css")?_=' + cacheVer),
+                    window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/css/dataTables.bootstrap5.min.css")?_=' + cacheVer),
+                    window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/css/toastr.min.css")?_=' + cacheVer),
+                    window.jlwUtility.promiseInitBootstrap,
+                    window.jlwUtility.promiseInitFontAwesome,
+                    window.jlwUtility.promiseInitBootbox,
+                    window.jlwUtility.promiseInitToastr,
+                    window.jlwUtility.lazyLoadLibrary(jQuery.fn.DataTable,'@Url.Content($"~/{jsRoot}/js/jquery.dataTables.min.js")?_=' + cacheVer),
+                    window.jlwUtility.lazyLoadLibrary(window.libJlwAppBuilder, '@Url.Content($"~/{jsRoot}/js/libJlwAppBuilder.min.js")?_=' + cacheVer),
+                    window.jlwUtility.lazyLoadLibrary(
+                        window.___FONT_AWESOME___ &&
+                        window.___FONT_AWESOME___.styles &&
+                        window.___FONT_AWESOME___.styles.fas,
+                        '@Url.Content($"~/{jsRoot}/font-awesome/js/solid.min.js")?_=' + cacheVer
+                    )
                 ).done(function() {
                     bootbox.setDefaults({ centerVertical: true, scrollable: true });
-
                     window.jlwLibLocalizedContentText();
                     window.jlwUtility.hidePleaseWait();
 
@@ -68,8 +76,16 @@
             if (typeof window.jlwUtility == 'undefined') {
                 window.jlwUtility = new window.libJlwUtility({
                     'cacheVersion': cacheVer,
-                    'libPaths': {},
-                    'fnInit': window.setTimeout(fnInit, 10)
+                    'libPaths': {
+                            'jQuery': '@Url.Content($"~/{jsRoot}/js/jquery.min.js")?_=' + cacheVer,
+                            'Bootstrap': '@Url.Content($"~/{jsRoot}/js/bootstrap.min.js")?_=' + cacheVer,
+                            'Toastr': '@Url.Content($"~/{jsRoot}/js/toastr.min.js")?_=' + cacheVer,
+                            'Bootbox': '@Url.Content($"~/{jsRoot}/js/bootbox.min.js")?_=' + cacheVer,
+                            'FontAwesome': '@Url.Content($"~/{jsRoot}/font-awesome/js/fontawesome.min.js")?_=' + cacheVer
+                    },
+                    'fnInit': function () {
+                        window.setTimeout(fnInit, 10);
+                    }
                 });
             } else {
                 fnInit();
@@ -81,13 +97,13 @@
             var headTag = document.getElementsByTagName("head")[0];
             var jqTag = document.createElement('script');
             jqTag.type = 'text/javascript';
-            jqTag.src = '@Url.Content($"~/{jsRoot}/js/libJlwUtility.min.js")?_v=' + cacheVer;
+            jqTag.src = '@Url.Content($"~/{jsRoot}/js/libJlwUtility.min.js")?_=' + cacheVer;
             jqTag.onload = onPageLoadInit;
             headTag.appendChild(jqTag);
         } else {
             onPageLoadInit();
         }
-    })('');
+    })('@version');
     </script>
 }
 

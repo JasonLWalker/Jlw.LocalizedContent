@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Jlw.Data.LocalizedContent;
 using Jlw.Web.Rcl.LocalizedContent;
+using Jlw.Web.Rcl.LocalizedContent.Areas.ModularWizardAdmin.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ namespace Jlw.Web.LocalizedContent.SampleWebApp.Controllers
 {
     [Route("~/Admin/[controller]")]
     [Authorize("ContentOverrideAdmin")]
-    public class OverrideModularWizardAdminController : Jlw.Web.Rcl.LocalizedContent.Areas.ModularWizardAdmin.Controllers.AdminController
+    public class OverrideModularWizardAdminController : AdminController
     {
         
         public OverrideModularWizardAdminController(IWizardAdminSettings settings, IWizardFactoryRepository repository) : base(settings, repository)
@@ -38,6 +39,16 @@ namespace Jlw.Web.LocalizedContent.SampleWebApp.Controllers
 			DefaultSettings.CanReadField = User?.HasClaim(x =>
 				(x?.Type?.Equals(nameof(LocalizedContentAccess), StringComparison.InvariantCultureIgnoreCase) ?? false) &&
 				(x.Value?.Equals(nameof(LocalizedContentAccess.ReadFieldRecords), StringComparison.InvariantCultureIgnoreCase) ?? false)
+			) ?? false;
+
+			DefaultSettings.CanEditWizard = User?.HasClaim(x =>
+				(x?.Type?.Equals(nameof(LocalizedContentAccess), StringComparison.InvariantCultureIgnoreCase) ?? false) &&
+				(x.Value?.Equals(nameof(LocalizedContentAccess.SaveFieldRecords), StringComparison.InvariantCultureIgnoreCase) ?? false)
+			) ?? false;
+
+			DefaultSettings.CanEditScreen = User?.HasClaim(x =>
+				(x?.Type?.Equals(nameof(LocalizedContentAccess), StringComparison.InvariantCultureIgnoreCase) ?? false) &&
+				(x.Value?.Equals(nameof(LocalizedContentAccess.SaveFieldRecords), StringComparison.InvariantCultureIgnoreCase) ?? false)
 			) ?? false;
 
 			DefaultSettings.CanEditField = User?.HasClaim(x =>

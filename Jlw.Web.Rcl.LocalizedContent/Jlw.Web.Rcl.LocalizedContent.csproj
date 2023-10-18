@@ -27,7 +27,7 @@
     <Company>Jason L. Walker</Company>
     <Authors>Jason L. Walker</Authors>
     <Description>Razor Class Library to implement form and content creation via a database-driven UI</Description>
-    <Copyright>Copyright ©2019-2022 Jason L. Walker</Copyright>
+    <Copyright>Copyright ©2019-2023 Jason L. Walker</Copyright>
     <VersionPrefix Condition="'$(VersionPrefix)' == ''">0.0.0.1</VersionPrefix>
     <Version>$(VersionPrefix)$(VersionSuffix)</Version>
     <SignAssembly>true</SignAssembly>
@@ -42,12 +42,17 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.13" /> 
+    <PackageReference Include="Jlw.Extensions.DataParsing" Version="4.8.8531.6086" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.16" /> 
     <PackageReference Include="Jlw.Utilities.WebApiUtility" Version="1.5.7928.8091" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="resources\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="resources\LocalizedContent\js\tinycePlaceholder.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,7 +63,7 @@
 		<Folder Include="resources\LocalizedContent\font-awesome\" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="../README.md" Pack="true" PackagePath="\"/>
+		<None Include="../README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 
