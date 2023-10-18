@@ -52,7 +52,7 @@
                         return t.onEditRecord(oBtn, fnShow);
                     }
 
-                    t.addDtRowButton('', 'btn-edit', 'fas fa-pencil-alt text-warning', 'btn-outline-secondary', fnOnEditRecord);
+                    t.addDtRowButton('', 'btn-edit', 'fa fa-fw fa-pencil-alt text-warning', 'btn-outline-secondary mx-1', fnOnEditRecord);
                 </text>
             }
             @if (canAdd)
@@ -86,12 +86,12 @@
                         }
                         return t.onAddRecord(fnShow);
                     }
-                    t.addDtFooterButton(' Add New Record', 'btn-newrecord', 'fa fa-plus', 'btn-primary', fnOnAddRecord);
+                    t.addDtFooterButton(' Add New Record', 'btn-newrecord', 'fa fa-fw fa-plus', 'btn-primary mx-1', fnOnAddRecord);
                 </text>
             }
             @if (canDelete)
             {
-                @:t.addDtRowButton('', 'btn-delete', 'fas fa-trash-alt text-danger', 'btn-outline-secondary', t.onDeleteRecord);
+                @:t.addDtRowButton('', 'btn-delete', 'fas fa-fw fa-trash-alt text-danger', 'btn-outline-secondary mx-1', t.onDeleteRecord);
             }
 
             t.fnPostDtAjaxData = function(d) {

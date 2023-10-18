@@ -1,3 +1,4 @@
+@using Microsoft.Extensions.DependencyInjection
 @model Jlw.Web.Rcl.LocalizedContent.WizardAdminSettings
 @{
     ViewData["Title"] = @Model.PageTitle;
@@ -6,7 +7,7 @@
 	
     string apiUrl = (string.IsNullOrWhiteSpace(Model?.ApiOverrideUrl)) ? Url.Action("Index", "Api", new { Area = Model?.Area }) + "/" : Model?.ApiOverrideUrl;
 
-    string jsRoot = "LocalizedContent";
+    string jsRoot = LocalizedContentExtensions.AreaName;
 }
 <div id="wizard-toolbox" class="flex-fill d-flex justify-content-start">
     <div class="d-flex flex-row w-100 p-0 m-0">
@@ -68,10 +69,11 @@
 	@Html.Raw(Model.ExtraCss)
 }
 @section Scripts {
-	@Html.Raw(Model.ExtraScript)
-	<link rel="stylesheet" href="~/@jsRoot/css/bootstrap-sketchy.min.css?_v=@version">
-	<script src="~/LocalizedContent/js/wizardLibScript.js?_=@version"></script>
-	<script>
+    @Html.Raw(Model.ExtraScript)
+    @*link rel="stylesheet" href="~/@jsRoot/css/bootstrap-sketchy.min.css?_v=@version">
+    <script src="~/LocalizedContent/js/wizardLibScript.js?_=@version"></script>*@
+    <script src="~/LocalizedContent/tinymce/tinymce.min.js?_=@version"></script>
+    <script>
     var bPreviewFrameLoaded = false;
     window.addEventListener('message', function(event) {
         // IMPORTANT: Check the origin of the data!
@@ -101,7 +103,7 @@
     });
 
 	</script>
-	<style>
+    <style>
 		html, body { height: 100% !important; }
 
 		#wizard-toolbox {
@@ -224,10 +226,10 @@
 			flex: 0 0 250px;
 		}
 
-		.close {
+		@*.close {
 			border: none;
 			background: transparent;
-		}
+		}*@
 
 		.right-toolbar .button-icon.disabled > .dropdown, #btn-update-language:disabled, #field-type-edit:disabled {
 			background-color: #e9ecef;
@@ -295,7 +297,7 @@
 			padding-left: 0;
 		}
 	</style>
-	<style>
+    <style>
 		.text-warning-hover:hover {
 			color: #ffc107 !important;
 		}
@@ -324,7 +326,7 @@
 			color: #f8f9fa !important;
 		}
 	</style>
-	<style>
+    <style>
 		.jlw-editform-localizedcontenttext .tox-tinymce {
 			height: 80vh !important;
 			height: calc(80vh - 200px) !important;
@@ -417,32 +419,12 @@
 		}
 	/* End of prism.js syntax highlighting*/
     </style>
-	<style>@Html.Raw(Model?.ExtraCss)</style>
-	<script>
-        // Jquery plugin from https://newbedev.com/change-the-tag-but-keep-the-attributes-and-content-jquery-javascript
-        (function (a) {
-            a.fn.replaceTagName = function (f) {
-                var g = [],
-                    h = this.length;
-                while (h--) {
-                    var k = document.createElement(f),
-                        b = this[h],
-                        d = b.attributes;
-                    for (var c = d.length - 1; c >= 0; c--) {
-                        var j = d[c];
-                        k.setAttribute(j.name, j.value);
-                    }
-                    k.innerHTML = b.innerHTML;
-                    a(b).after(k).remove();
-                    g[h - 1] = k;
-                }
-                return a(g);
-            }
-        })(window.jQuery);
+    <style>@Html.Raw(Model?.ExtraCss)</style>
+    <script>
     </script>
-	<script src="@Url.Content($"~/{jsRoot}/jquery-contextmenu/dist/jquery.contextMenu.min.js?_v={version}")"></script>
-	<script src="@Url.Content($"~/{jsRoot}/js/bootbox.min.js?_v={version}")"></script>
-	<script>
+    @*	<script src="@Url.Content($"~/{jsRoot}/jquery-contextmenu/dist/jquery.contextMenu.min.js?_v={version}")"></script>
+	<script src="@Url.Content($"~/{jsRoot}/js/bootbox.min.js?_v={version}")"></script>*@
+<script>
 
         (function(cacheVer) {
 
@@ -450,16 +432,16 @@
 
                 function fnInit() {
                     // Fix Jquery get to always apply cross-domain to fix loading of js.map files as specified in https://stackoverflow.com/questions/690781/debugging-scripts-added-via-jquery-getscript-function/691661#answer-36479561
-                    jQuery.extend({
+                    $.extend({
                         get: function(url, data, callback, type) {
                             // shift arguments if data argument was omitted
-                            if (jQuery.isFunction(data)) {
+                            if ($.isFunction(data)) {
                                 type = type || callback;
                                 callback = data;
                                 data = undefined;
                             }
 
-                            return jQuery.ajax({
+                            return $.ajax({
                                 url: url,
                                 type: "GET",
                                 dataType: type,
@@ -470,33 +452,65 @@
                         }
                     });
 
+                    // Jquery plugin from https://newbedev.com/change-the-tag-but-keep-the-attributes-and-content-jquery-javascript
+                    $.fn.replaceTagName = function (f) {
+                        var g = [],
+                            h = this.length;
+                        while (h--) {
+                            var k = document.createElement(f),
+                                b = this[h],
+                                d = b.attributes;
+                            for (var c = d.length - 1; c >= 0; c--) {
+                                var j = d[c];
+                                k.setAttribute(j.name, j.value);
+                            }
+                            k.innerHTML = b.innerHTML;
+                            $(b).after(k).remove();
+                            g[h - 1] = k;
+                        }
+                        return $(g);
+                    }
+
+
                     window.jlwUtility.showPleaseWait();
 					$.ajaxSetup({
 					  cache: true
 					});
-                    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/dataTables.bootstrap5.min.css?_v={version}")"));
-                    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/toastr.min.css?_v={version}")"));
-                    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/prism-vs.min.css?_v={version}")"));
-                    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/fancytree/dist/skin-lion/ui.fancytree.min.css?_v={version}")"));
-                    $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/jquery-contextmenu/dist/jquery.contextMenu.min.css?_v={version}")"));
-                    $.when(
-                        window.jlwUtility.lazyLoadLibrary(jQuery.fn.DataTable, "@Url.Content($"~/{jsRoot}/js/jquery.dataTables.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(window.libJlwAppBuilder, "@Url.Content($"~/{jsRoot}/js/libJlwAppBuilder.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(window.bootbox, "@Url.Content($"~/{jsRoot}/js/bootbox.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(window.___FONT_AWESOME___ && window.___FONT_AWESOME___.styles && window.___FONT_AWESOME___.styles.fas, "@Url.Content($"~/{jsRoot}/font-awesome/js/solid.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(window.FontAwesome, "@Url.Content($"~/{jsRoot}/font-awesome/js/fontawesome.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(jQuery.fn.fancytree, "@Url.Content($"~/{jsRoot}/fancytree/dist/jquery.fancytree-all-deps.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(window.Sortable, "@Url.Content($"~/{jsRoot}/js/Sortable.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(window.Prism, "@Url.Content($"~/{jsRoot}/js/prism.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(window.toastr, "@Url.Content($"~/{jsRoot}/js/toastr.min.js?_v={version}")"),
-                        window.jlwUtility.lazyLoadLibrary(window.tinyMCE, "@Url.Content($"~/{jsRoot}/tinymce/tinymce.min.js?_v={version}")")
+                    //$('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/bootstrap.min.css")"));
+                    //$('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/dataTables.bootstrap5.min.css")"));
+                    //$('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/toastr.min.css")"));
+                    //$('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/css/prism-vs.min.css")"));
+                    //$('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/fancytree/dist/skin-lion/ui.fancytree.min.css")"));
+                    //$('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', "@Url.Content($"~/{jsRoot}/jquery-contextmenu/dist/jquery.contextMenu.min.css")"));
+					$.when(
+						window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/css/bootstrap.min.css")?_=' + cacheVer),
+						window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/css/dataTables.bootstrap5.min.css")?_=' + cacheVer),
+						window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/css/toastr.min.css")?_=' + cacheVer),
+						window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/css/prism-vs.min.css")?_=' + cacheVer),
+						window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/fancytree/dist/skin-lion/ui.fancytree.min.css")?_=' + cacheVer),
+						window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/jquery-contextmenu/dist/jquery.contextMenu.min.css")?_=' + cacheVer),
+						window.jlwUtility.lazyLoadStyle('@Url.Content($"~/{jsRoot}/css/bootstrap-sketchy.min.css")?_=' + cacheVer),
+                        window.jlwUtility.lazyLoadLibrary($.fn.DataTable, '@Url.Content($"~/{jsRoot}/js/jquery.dataTables.min.js")?_=' + cacheVer),
+                        window.jlwUtility.lazyLoadLibrary(window.libJlwAppBuilder, '@Url.Content($"~/{jsRoot}/js/libJlwAppBuilder.min.js")?_=' + cacheVer),
+                        window.jlwUtility.lazyLoadLibrary($.fn.contextMenu, '@Url.Content($"~/{jsRoot}/jquery-contextmenu/dist/jquery.contextMenu.min.js")?_=' + cacheVer),
+                        window.jlwUtility.lazyLoadLibrary($.fn.fancytree, '@Url.Content($"~/{jsRoot}/fancytree/dist/jquery.fancytree-all-deps.min.js")?_=' + cacheVer),
+                        window.jlwUtility.lazyLoadLibrary(window.Sortable, '@Url.Content($"~/{jsRoot}/js/Sortable.min.js")?_=' + cacheVer),
+                        window.jlwUtility.lazyLoadLibrary(window.Prism, '@Url.Content($"~/{jsRoot}/js/prism.min.js")?_=' + cacheVer),
+                        window.jlwUtility.lazyLoadLibrary(window.Prism, '@Url.Content($"~/{jsRoot}/js/wizardLibScript.js")?_=' + cacheVer),
+                        //window.jlwUtility.lazyLoadLibrary(window.tinyMCE, '@Url.Content($"~/{jsRoot}/tinymce/tinymce.min.js")?_=' + cacheVer),
+                        window.jlwUtility.lazyLoadLibrary(
+                            window.___FONT_AWESOME___ &&
+                            window.___FONT_AWESOME___.styles &&
+                            window.___FONT_AWESOME___.styles.fas,
+                            '@Url.Content($"~/{jsRoot}/font-awesome/js/solid.min.js")?_=' + cacheVer
+                        )
                     ).done(function() {
 						$.ajaxSetup({
 						  cache: false
 						});
                         var t = new window.libJlwUtility() || {};
                         window.libJlwWizardAdmin(t,
-                            window.jQuery,
+                            $,
                             {
                                 'urlRoot': '@Html.Raw(Url.Action("Index", "Home", new { Area = "" }))',
                                 'urlApiRoot': '@apiUrl'
@@ -535,8 +549,14 @@
                 if (typeof window.jlwUtility == 'undefined') {
                     window.jlwUtility = new window.libJlwUtility({
                         'cacheVersion': cacheVer,
-                        'libPaths': {},
-                        'fnInit': window.setTimeout(fnInit, 10)
+						'libPaths': {
+                            'jQuery': '@Url.Content($"~/{jsRoot}/js/jquery.min.js")?_=' + cacheVer,
+                            'Bootstrap': '@Url.Content($"~/{jsRoot}/js/bootstrap.min.js")?_=' + cacheVer,
+                            'Toastr': '@Url.Content($"~/{jsRoot}/js/toastr.min.js")?_=' + cacheVer,
+                            'Bootbox': '@Url.Content($"~/{jsRoot}/js/bootbox.min.js")?_=' + cacheVer,
+                            'FontAwesome': '@Url.Content($"~/{jsRoot}/font-awesome/js/fontawesome.min.js")?_=' + cacheVer
+						},
+                        'fnInit': function(){ window.setTimeout(fnInit, 10)}
                     });
                 } else {
                     fnInit();
@@ -548,15 +568,15 @@
                 var headTag = document.getElementsByTagName("head")[0];
                 var jqTag = document.createElement('script');
                 jqTag.type = 'text/javascript';
-                jqTag.src = '@Url.Content($"~/{jsRoot}/js/libJlwUtility.min.js?_v={version}")';
+                jqTag.src = '@Url.Content($"~/{jsRoot}/js/libJlwUtility.min.js")?_=' + cacheVer;
                 jqTag.onload = onPageLoadInit;
                 headTag.appendChild(jqTag);
             } else {
                 onPageLoadInit();
             }
         })('@version');
-    </script>
-	@Html.Raw(Model?.ExtraScript)
+</script>
+    @Html.Raw(Model?.ExtraScript)
 }
 <div class="d-none hidden">
 	@Html.PartialAsync("~/Areas/ModularWizardAdmin/Views/Admin/_DataTableLanguageList.cshtml").Result

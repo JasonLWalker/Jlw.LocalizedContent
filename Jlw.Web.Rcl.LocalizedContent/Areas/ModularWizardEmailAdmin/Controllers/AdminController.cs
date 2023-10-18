@@ -1,10 +1,5 @@
-using System.Collections.Generic;
-using Jlw.Data.LocalizedContent;
-using Microsoft.AspNetCore.Authorization;
+using Jlw.Extensions.DataParsing;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Routing;
-using Newtonsoft.Json.Linq;
 
 namespace Jlw.Web.Rcl.LocalizedContent.Areas.ModularWizardEmailAdmin.Controllers 
 {
@@ -34,49 +29,16 @@ namespace Jlw.Web.Rcl.LocalizedContent.Areas.ModularWizardEmailAdmin.Controllers
 
         public class WizardAdminSettings : LocalizedContent.WizardAdminSettings
         {
-            //public bool IsAdmin { get; set; }
-            //public bool CanEdit { get; set; }
-            //public bool CanDelete { get; set; }
-            //public bool CanInsert { get; set; }
-
-            //public bool UseWysiwyg { get; set; } = true;
-            //public bool ShowWireFrame { get; set; }
-            //public bool SideNavDefault { get; set; }
-            //public bool WireFrameDefault { get; set; }
             public bool ShowGroup { get; set; } = false;
             public bool ShowFieldName { get; set; } = false;
             public bool ShowLanguage { get; set; } = false;
             public bool ShowParent { get; set; } = false;
             public bool ShowKey { get; set; } = true;
-            //public JToken TinyMceSettings { get; set; }
-            //public string DefaultWizard { get; }
-            //public string Version { get; }
-            //public string GroupFilter { get; }
-            //public bool ShowSideNav { get; set; }
-            //public WizardSideNav SideNav { get; }
-            //public string PageTitle { get; set; }
-            //public string ExtraCss { get; set; }
-            //public string ExtraScript { get; set; }
-            //public string Area { get; set; }
-            //public string ApiControllerName { get; set; }
-            //public string ControllerName { get; set; }
-            //public LinkGenerator LinkGenerator { get; set; }
-            //public string AdminUrl { get; set; }
-            //public string PreviewUrl { get; set; }
-            //public string PreviewScreenUrl { get; set; }
-            //public string ExportUrl { get; set; }
-            //public string ToolboxHeight { get; set; }
-            //public string HiddenFilterPrefix { get; set; }
-            //public object PreviewRecordData { get; set; }
-            //public string ApiOverrideUrl { get; set; }
-            //public string JsRoot { get; set; }
 
             public string GroupKey { get; set; }
             public string FieldKey { get; set; }
             public string ParentKey { get; set; }
             public string Language { get; set; }
-
-            //public List<SelectListItem> LanguageList { get; } = new List<SelectListItem>() { new SelectListItem("English", "EN") };
 
             public string DataTableClass { get; set; } = "table table-bordered table-sm table-striped table-hover";
             public bool DataTablePaging { get; set; } = true;
@@ -87,7 +49,34 @@ namespace Jlw.Web.Rcl.LocalizedContent.Areas.ModularWizardEmailAdmin.Controllers
             public string EditView { get; set; } = "~/Areas/ModularWizardEmailAdmin/Views/Admin/_EditRecord.cshtml";
             public string DataTableListView { get; set; } = "~/Areas/ModularWizardEmailAdmin/Views/Admin/_DataTableList.cshtml";
             public string DataTableScriptView { get; set; } = "~/Areas/ModularWizardEmailAdmin/Views/Admin/_DataTableListScript.cshtml";
-        }
 
+            public WizardAdminSettings() : this(null) {}
+
+            public WizardAdminSettings(object o) : base(o)
+            {
+                if (o is null)
+                    return;
+
+                ShowGroup = o.ParseTo<bool>(nameof(ShowGroup));
+                ShowFieldName = o.ParseTo<bool>(nameof(ShowFieldName));
+                ShowLanguage = o.ParseTo<bool>(nameof(ShowLanguage));
+                ShowParent = o.ParseTo<bool>(nameof(ShowParent));
+                ShowKey = o.ParseTo<bool>(nameof(ShowKey));
+                GroupKey = o.ParseTo<string>(nameof(GroupKey));
+                FieldKey = o.ParseTo<string>(nameof(FieldKey));
+                ParentKey = o.ParseTo<string>(nameof(ParentKey));
+                Language = o.ParseTo<string>(nameof(Language));
+                DataTableClass = o.NullIfWhiteSpace(nameof(DataTableClass)) ?? DataTableClass;
+                DataTablePaging = o.ParseTo<bool>(nameof(DataTablePaging));
+                DataTableSearch = o.ParseTo<bool>(nameof(DataTableSearch));
+                DataTableInfo = o.ParseTo<bool>(nameof(DataTableInfo));
+                DataTableAttributes = o.ParseTo<string>(nameof(DataTableAttributes));
+
+                EditView = o.NullIfWhiteSpace(nameof(EditView)) ?? EditView;
+                DataTableListView = o.NullIfWhiteSpace(nameof(DataTableListView)) ?? DataTableListView;
+                DataTableScriptView = o.NullIfWhiteSpace(nameof(DataTableScriptView)) ?? DataTableScriptView;
+
+            }
+        }
     }
 }

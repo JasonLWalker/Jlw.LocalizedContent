@@ -142,7 +142,7 @@
                 }
 
 
-                t.addDtRowButton('', 'btn-edit', 'fas fa-pencil-alt text-warning', 'btn-outline-secondary', fnOnEditRecord);
+                t.addDtRowButton('', 'btn-edit', 'fa fa-fw fa-pencil-alt text-warning', 'btn-outline-secondary mx-1', fnOnEditRecord);
 
                 t.optionsWysiwyg = {
                     @Html.Raw(!string.IsNullOrWhiteSpace(ViewData["tinyMceAdditionalOptions"]?.ToString()) ? ViewData["tinyMceAdditionalOptions"] + "," : "")useTinyMce: true,
@@ -168,7 +168,7 @@
             </text>
         }
 
-            t.addDtRowButton('', 'btn-delete', 'fas fa-trash-alt text-danger', 'btn-outline-secondary', t.onDeleteRecord);
+            t.addDtRowButton('', 'btn-delete', 'fa fa-fw fa-trash-alt text-danger', 'btn-outline-secondary mx-1', t.onDeleteRecord);
 
             t.fnPostDtAjaxData = function(d) {
                 d.GroupKey = '@(ViewData["groupKey"])';
