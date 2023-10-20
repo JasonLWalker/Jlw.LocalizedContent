@@ -46,7 +46,7 @@ $(Get-ProjectInfoTable $projectName $projectPath)
 $(Get-ProjectDependencyTable $projectPath)
 
 ## Front-end Dependencies
-$(Get-LibmanDependencyTable $libmanPath -purposes $purposes)
+$(Get-LibmanDependencyTable $libmanPath)
 
 
 <!-- $( 
@@ -58,6 +58,8 @@ $(Get-LibmanDependencyTable $libmanPath -purposes $purposes)
 $(Get-SqlSchemaTable "$dbServer" "$dbName" "SqlSchema/Table" $buildPath "Table")
 
 $(Get-SqlSchemaTable "$dbServer" "$dbName" "SqlSchema/StoredProcedure" "$($buildPath)" -heading "Stored Procedure")
+
+$(Get-SqlSchemaTable "$dbServer" "$dbName" "SqlSchema/UserDefinedFunction" "$($buildPath)" -heading "Function")
 
 $(Get-SqlSchemaTable "$dbServer" "$dbName" "SqlSchema/View" "$($buildPath)" -heading "View")
 
