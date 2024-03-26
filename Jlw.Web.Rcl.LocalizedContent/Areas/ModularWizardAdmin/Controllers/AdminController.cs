@@ -111,7 +111,7 @@ namespace Jlw.Web.Rcl.LocalizedContent.Areas.ModularWizardAdmin.Controllers
                               $"{(field.DefaultLabel == null ? "null" : $"N'{field.DefaultLabel.Replace("'", "''")}'")}, " +
                               $"{(field.WrapperClass == null ? "null" : $"N'{field.WrapperClass.Replace("'", "''")}'")}, " +
                               $"{(field.WrapperHtmlStart == null ? "null" : $"N'{field.WrapperHtmlStart.Replace("'", "''")}'")}, " +
-                              $"{(field.WrapperHtmlEnd == null ? "null" : $"N'{field.WrapperHtmlStart.Replace("'", "''")}'")}, " +
+                              $"{(field.WrapperHtmlEnd == null ? "null" : $"N'{field.WrapperHtmlEnd.Replace("'", "''")}'")}, " +
                               $"{(field.AuditChangeType == null ? "null" : $"N'{field.AuditChangeType.Replace("'", "''")}'")}, " +
                               $"{(field.AuditChangeBy == null ? "null" : $"N'{field.AuditChangeBy.Replace("'", "''")}'")}, " +
                               $"N'{field.AuditChangeDate.ToString("yyyy-MM-dd HH:mm:ss")}', " +
@@ -136,7 +136,7 @@ namespace Jlw.Web.Rcl.LocalizedContent.Areas.ModularWizardAdmin.Controllers
             byte[] aBytes = Encoding.ASCII.GetBytes(sb.ToString());
             return new FileContentResult(aBytes, "text/plain")
             {
-                FileDownloadName = $"{wizardName}-{DateTime.Now.Ticks}.sql"
+                FileDownloadName = $"{wizardName}{(string.IsNullOrWhiteSpace(screenName) ? "" : ("-" + screenName))}-{DateTime.Now.Ticks}.sql"
             };
         }
 
