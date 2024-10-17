@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Jlw.Web.LocalizedContent.SampleWebApp.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     [Route("~/Admin/[controller]")]
     [Authorize("ContentOverrideAdmin")]
     public class OverrideModularWizardAdminController : AdminController

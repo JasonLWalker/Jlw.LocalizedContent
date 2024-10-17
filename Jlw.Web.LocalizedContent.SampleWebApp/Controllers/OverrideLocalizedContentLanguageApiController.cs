@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jlw.Web.LocalizedContent.SampleWebApp.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     [Authorize("ContentOverrideAdmin")]
     [Route("admin/api/OverrideLocalizedContentLanguage/")]
     public class OverrideLocalizedContentLanguageApiController : ApiController

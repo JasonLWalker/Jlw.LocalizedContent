@@ -11,6 +11,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Jlw.Web.LocalizedContent.SampleWebApp.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     [Authorize]
     [ApiController]
     [Route("~/api/Wizard")]

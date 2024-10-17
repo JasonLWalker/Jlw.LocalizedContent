@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Jlw.Web.LocalizedContent.SampleWebApp.Controllers
 {
     //[Route("~/Admin/[controller]")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     [Authorize("ContentOverrideAdmin")]
     public class OverrideLocalizedTextController : Controller
     {

@@ -10,6 +10,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Jlw.Web.LocalizedContent.SampleWebApp.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     [Authorize]
     [ApiController]
     [Route("~/admin/api/SampleWizard")]

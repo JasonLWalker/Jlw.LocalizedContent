@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jlw.Web.LocalizedContent.SampleWebApp.Controllers
 {
+    [ApiExplorerSettings(IgnoreApi = true)]
     //[Route("~/Admin/[controller]")]
     [Authorize("ContentOverrideAdmin")]
     public class OverrideLocalizedFieldController : Controller
