@@ -32,12 +32,13 @@ namespace Microsoft.Extensions.DependencyInjection
             string filename = "";
             if (dbClient.GetRecordScalar<int>(null, server.ConnectionContext.ConnectionString, new RepositoryMethodDefinition($"SELECT OBJECT_ID('{name}')", CommandType.Text, null, null, null)) < 1)
             {
-
                 if (name.StartsWith("dbo.sp_", StringComparison.InvariantCultureIgnoreCase))
                     filename = $"../SqlSchema/StoredProcedure/{name}.SQL";
                 else if (name.StartsWith("dbo.vw", StringComparison.InvariantCultureIgnoreCase))
                     filename = $"../SqlSchema/View/{name}.SQL";
-                else 
+                else if (name.StartsWith("dbo.fn", StringComparison.InvariantCultureIgnoreCase))
+                    filename = $"../SqlSchema/UserDefinedFunction/{name}.SQL";
+                else
                     filename = $"../SqlSchema/Table/{name}.SQL";
 
                 string initScript = File.ReadAllText(filename);
@@ -45,6 +46,15 @@ namespace Microsoft.Extensions.DependencyInjection
                 Console.WriteLine($"Executing SQL script '{filename}'");
 
                 server.ConnectionContext.ExecuteNonQuery(initScript);
+            }
+        }
+
+        public static void CreateDatabaseIfNotExists(string name, Server server, IModularDbClient dbClient)
+        {
+            if (dbClient.GetRecordScalar<int>(null, server.ConnectionContext.ConnectionString.Replace("LocalizedContent", "master"), new RepositoryMethodDefinition($"SELECT count(*) FROM sys.databases WHERE name = '{name}'", CommandType.Text, null, null, null)) < 1)
+            {
+                dbClient.GetRecordScalar<int>(null, server.ConnectionContext.ConnectionString.Replace("LocalizedContent", "master"), new RepositoryMethodDefinition($"CREATE DATABASE {name}", CommandType.Text, null, null, null));
+                //server.ConnectionContext.ExecuteNonQuery($"CREATE DATABASE {name}");
             }
         }
 
@@ -106,6 +116,8 @@ namespace Microsoft.Extensions.DependencyInjection
             
             var dbClient = app.ApplicationServices.GetRequiredService<IModularDbClient>();
 
+            CreateDatabaseIfNotExists("LocalizedContent", server, dbClient);
+
             // Import Databases
             ImportSqlObject("dbo.DatabaseAuditTrail", server, dbClient);
             ImportSqlObject("dbo.LocalizedContentFields", server, dbClient);
@@ -119,6 +131,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // Import Content Field Stored Procs
             ImportSqlObject("dbo.sp_GetLocalizedContentFieldsDt", server, dbClient);
+            ImportSqlObject("dbo.sp_GetLocalizedContentFieldRecord", server, dbClient);
             ImportSqlObject("dbo.sp_SaveLocalizedContentFieldRecord", server, dbClient);
             ImportSqlObject("dbo.sp_SaveLocalizedContentFieldData", server, dbClient);
             ImportSqlObject("dbo.sp_DeleteLocalizedContentFieldRecord", server, dbClient);
@@ -140,11 +153,15 @@ namespace Microsoft.Extensions.DependencyInjection
             // Import Wizard Stored Procs
             ImportSqlObject("dbo.sp_DeleteWizardFieldRecursive", server, dbClient);
             ImportSqlObject("dbo.sp_GetFormFields", server, dbClient);
+            ImportSqlObject("dbo.sp_GetLocalizedContentFieldRecordByName", server, dbClient);
+
             ImportSqlObject("dbo.sp_GetWizardFields", server, dbClient);
+            ImportSqlObject("dbo.sp_GetWizardModelFields", server, dbClient);
             ImportSqlObject("dbo.sp_GetWizardContentFieldRecord", server, dbClient);
             ImportSqlObject("dbo.sp_GetComponentList", server, dbClient);
             ImportSqlObject("dbo.sp_SaveLocalizedContentFieldParentOrder", server, dbClient);
-            
+            ImportSqlObject("dbo.fnGetWizardTreeNodes", server, dbClient);
+
             return app;
         }
 
