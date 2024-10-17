@@ -17,6 +17,8 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using TUser = Jlw.Extensions.Identity.Stores.ModularBaseUser;
+using Microsoft.OpenApi.Models;
+using Microsoft.SqlServer.Management.Smo.Wmi;
 
 namespace Jlw.Web.LocalizedContent.SampleWebApp;
 
@@ -59,6 +61,24 @@ public class Program
 
             return new ModularDbClient<SqlConnection, SqlCommand, SqlParameter, SqlConnectionStringBuilder>();
         });
+
+        builder.Services.AddSwaggerGen(opts =>
+        {
+            //opts.SchemaFilter<EnumSchemaFilter>();
+
+            opts.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "LocalizedContent WebAPI",
+                Version = "v1"
+            });
+            opts.UseInlineDefinitionsForEnums();
+            opts.UseAllOfToExtendReferenceSchemas();
+
+            opts.IncludeXmlComments(typeof(Jlw.Web.Rcl.LocalizedContent.Areas.ModularWizardAdmin.Controllers.ApiController).Assembly);
+
+        });
+
+
 
         builder.Services.TryAddSingleton<IWizardSettings>(provider =>
         {
@@ -163,6 +183,15 @@ public class Program
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
         {
+            app.UseSwagger(opts =>
+            {
+                opts.RouteTemplate = $"{LocalizedContentAdminExtensions.AreaName}/Api/Docs/{{documentName}}/swagger.json";
+            });
+            app.UseSwaggerUI(opts =>
+            {
+                opts.RoutePrefix = $"{LocalizedContentAdminExtensions.AreaName}/Api/Docs";
+                opts.SwaggerEndpoint($"v1/swagger.json", "LocalizedContent WebAPI");
+            });
             app.UseDeveloperExceptionPage();
         }
 
