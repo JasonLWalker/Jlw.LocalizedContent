@@ -276,8 +276,10 @@
 
             function fnOnClickElement(evt) {
                 var obj = $(evt.target).closest("[id^='jlwContainer-'],[id^='jlwElement-']");
-                if ($(evt.target).closest(".embed-body")[0])
-					return;
+                if ($(evt.target).closest(".embed-body")[0]) {
+                    obj = $($(evt.target).closest(".embed-body")[0]);
+					//return;
+                }
 
                 if (obj.is("[id^='jlwContainer-'],[id^='jlwElement-']")) {
                     $("[id ^= 'jlwContainer-'], [id ^= 'jlwElement-']").removeClass('active');
