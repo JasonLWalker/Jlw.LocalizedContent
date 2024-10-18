@@ -23,70 +23,114 @@
 	            <input name="Order" type="hidden" class="form-control form-control-sm w-100"/>
 	            <input name="ParentKey" type="hidden" class="form-control form-control-sm w-100"/>
 				<div style="height: 1px; font-size: small;">
-				<div class="card common-card d-none mb-2">
-					<div class="card-header bg-secondary text-light px-2 py-0 card-toggle-thumb" data-hidecaret="left" data-showcaret="down" data-bs-toggle="collapse" role="button" data-bs-target="#collapseCommonProperties" aria-expanded="true" aria-controls="collapseCommonProperties">
-						<small class="font-weight-bold">Field Properties</small>
-						<span class="fa fa-caret-down fa-fw mt-1 float-end"></span>
-					</div>
-					<div class="collapse show" id="collapseCommonProperties">
-						<div class="card-body px-2 pt-1 pb-2">
-							<div class="form-floating field-name my-1">
-								<input name="FieldKey" type="text" class="form-control form-control-sm w-100" placeholder="Name"/>
-								<label>Name</label>
-							</div>
-							<div class="form-floating field-type input-group input-group-sm mb-1">
-								<select name="FieldType" class="form-select form-select-sm" disabled="disabled" placeholder="">
-									<option></option>
-									<option value="@nameof(WizardFieldTypes.BUTTON)">Button</option>
-									<option value="@nameof(WizardFieldTypes.EMBED)">Embed Form</option>
-									<option value="@nameof(WizardFieldTypes.FORM)">Form</option>
-									<option value="@nameof(WizardFieldTypes.INPUT)">Form Input</option>
-									<option value="@nameof(WizardFieldTypes.HTML)">HTML Text Block</option>
-									<option value="@nameof(WizardFieldTypes.BODY)">Page Body</option>
-									<option value="@nameof(WizardFieldTypes.HEADING)">Page Heading</option>
-									<option value="@nameof(WizardFieldTypes.SEPARATOR)">Horizontal Separator Bar</option>
-									<option value="@nameof(WizardFieldTypes.VSEPARATOR)">Vertical Separator Bar</option>
-									<option value="@nameof(WizardFieldTypes.SELECT)">Form Drop-down</option>
-									<option value="@nameof(WizardFieldTypes.TEXTAREA)">Text Area</option>
-									<option value="@nameof(WizardFieldTypes.WIZARD)">Wizard</option>
-									<option value="@nameof(WizardFieldTypes.SCREEN)">Wizard Screen</option>
-									<option value="@nameof(WizardFieldTypes.CUSTOM)">Custom Control</option>
-								</select>
-								<label>Field Type</label>
-								<button id="field-type-edit" class="btn btn-outline-warning border-secondary text-dark py-0"><small><span class="fa fa-edit"></span></small></button>
-							</div>
-							<div class="form-floating field-class">
-								<input name="FieldClass" type="text" class="form-control form-control-sm w-100"/>
-								<label>Field Class</label>
-							</div>
-						</div>
-					</div>
-				</div>
+				    <div class="card common-card d-none mb-2">
+					    <div class="card-header bg-secondary text-light px-2 py-0 card-toggle-thumb" data-hidecaret="left" data-showcaret="down" data-bs-toggle="collapse" role="button" data-bs-target="#collapseCommonProperties" aria-expanded="true" aria-controls="collapseCommonProperties">
+						    <small class="font-weight-bold">Field Properties</small>
+						    <span class="fa fa-caret-down fa-fw mt-1 float-end"></span>
+					    </div>
+					    <div class="collapse show" id="collapseCommonProperties">
+						    <div class="card-body px-2 pt-1 pb-2">
+							    <div class="form-floating field-name my-1">
+								    <input name="FieldKey" type="text" class="form-control form-control-sm w-100" placeholder="Name"/>
+								    <label>Name</label>
+							    </div>
+							    <div class="form-floating field-type input-group input-group-sm mb-1">
+								    <select name="FieldType" class="form-select form-select-sm" disabled="disabled" placeholder="">
+									    <option></option>
+									    <option value="@nameof(WizardFieldTypes.BUTTON)">Button</option>
+									    <option value="@nameof(WizardFieldTypes.EMBED)">Embed Form</option>
+									    <option value="@nameof(WizardFieldTypes.FORM)">Form</option>
+									    <option value="@nameof(WizardFieldTypes.INPUT)">Form Input</option>
+									    <option value="@nameof(WizardFieldTypes.HTML)">HTML Text Block</option>
+									    <option value="@nameof(WizardFieldTypes.BODY)">Page Body</option>
+									    <option value="@nameof(WizardFieldTypes.HEADING)">Page Heading</option>
+									    <option value="@nameof(WizardFieldTypes.SEPARATOR)">Horizontal Separator Bar</option>
+									    <option value="@nameof(WizardFieldTypes.VSEPARATOR)">Vertical Separator Bar</option>
+									    <option value="@nameof(WizardFieldTypes.SELECT)">Form Drop-down</option>
+									    <option value="@nameof(WizardFieldTypes.TEXTAREA)">Text Area</option>
+									    <option value="@nameof(WizardFieldTypes.WIZARD)">Wizard</option>
+									    <option value="@nameof(WizardFieldTypes.SCREEN)">Wizard Screen</option>
+									    <option value="@nameof(WizardFieldTypes.CUSTOM)">Custom Control</option>
+								    </select>
+								    <label>Field Type</label>
+								    <button id="field-type-edit" class="btn btn-outline-warning border-secondary text-dark py-0"><small><span class="fa fa-edit"></span></small></button>
+							    </div>
+							    <div class="form-floating field-class">
+								    <input name="FieldClass" type="text" class="form-control form-control-sm w-100"/>
+								    <label>Field Class</label>
+							    </div>
+						    </div>
+					    </div>
+				    </div>
 
-				<div class="card label-card d-none mb-2 ">
-					<div class="card-header bg-secondary text-light px-2 py-0 card-toggle-thumb" data-bs-toggle="collapse" data-hidecaret="left" data-showcaret="down" role="button" data-bs-target="#collapseLabelProperties" aria-expanded="true" aria-controls="collapseLabelProperties">
-						<small class="font-weight-bold">Label Properties</small>
-						<span class="fa fa-caret-down fa-fw mt-1 float-end"></span>
-					</div>
-					<div class="collapse show" id="collapseLabelProperties">
-						<div class="card-body px-2 pt-1 pb-2">
-	                                
-							<div class="form-floating field-label input-group input-group-sm my-1">
-								<input name="DefaultLabel" type="text" class="form-control form-control-sm bg-transparent" placeholder="">
-								<label>Default Label</label>
-								<button id="btn-update-language" class="btn btn-outline-primary border-secondary py-0" type="button"><span class="fa fa-language"></span></button>
-							</div>
-							<div class="form-floating label-class mb-1">
-								<input name="LabelClass" type="text" class="form-control form-control-sm w-100"/>
-								<label>Label Class</label>
-							</div>
-							<div class="form-check form-switch fs-6">
-								<input type="checkbox" role="switch" class="form-check-input" id="hideLabel" />
-								<label class="form-check-label" for="hideLabel"><small>Hide Label</small></label>
-							</div>
-						</div>
-					</div>
-				</div>
+				    <div class="card label-card d-none mb-2 ">
+					    <div class="card-header bg-secondary text-light px-2 py-0 card-toggle-thumb" data-bs-toggle="collapse" data-hidecaret="left" data-showcaret="down" role="button" data-bs-target="#collapseLabelProperties" aria-expanded="true" aria-controls="collapseLabelProperties">
+						    <small class="font-weight-bold">Label Properties</small>
+						    <span class="fa fa-caret-down fa-fw mt-1 float-end"></span>
+					    </div>
+					    <div class="collapse show" id="collapseLabelProperties">
+                            <div class="card-body px-2 pt-1 pb-2">
+
+                                <div class="form-floating field-label input-group input-group-sm my-1">
+                                    <input name="DefaultLabel" type="text" class="form-control form-control-sm bg-transparent" placeholder="">
+                                    <label>Default Label</label>
+                                    <button id="btn-update-language" class="btn btn-outline-primary border-secondary py-0" type="button"><span class="fa fa-language"></span></button>
+                                </div>
+                                <div class="form-floating label-class mb-1">
+                                    <input name="LabelClass" type="text" class="form-control form-control-sm w-100" />
+                                    <label>Label Class</label>
+                                </div>
+
+                                <div class="form-floating label-text-color mb-1">
+                                    <select id="labelTextColor" name="labelTextColor" class="form-select form-select-sm w-100">
+                                        <option value="">[ Default ]</option>
+                                        <option value="text-primary" class="text-primary py-2">Primary</option>
+                                        <option value="text-secondary" class="text-secondary py-2">Secondary</option>
+                                        <option value="text-success" class="text-success py-2">Success</option>
+                                        <option value="text-danger" class="text-danger py-2">Danger</option>
+                                        <option value="text-warning" class="text-warning py-2">Warning</option>
+                                        <option value="text-info" class="text-info py-2">Info</option>
+                                        <option value="text-light" class="bg-dark text-light py-2">Light</option>
+                                        <option value="text-dark" class="text-dark py-2">Dark</option>
+                                    </select>
+                                    <label for="labelTextColor">Label Text Color</label>
+                                </div>
+
+                                <div class="form-floating label-bg-color mb-1">
+                                    <select id="labelBgColor" name="labelBgColor" class="form-select form-select-sm w-100">
+                                        <option value="">[ Default ]</option>
+                                        <option value="bg-primary" class="bg-primary py-2">Primary</option>
+                                        <option value="bg-secondary" class="bg-secondary py-2">Secondary</option>
+                                        <option value="bg-success" class="bg-success py-2">Success</option>
+                                        <option value="bg-danger" class="bg-danger py-2">Danger</option>
+                                        <option value="bg-warning" class="bg-warning py-2">Warning</option>
+                                        <option value="bg-info" class="bg-info py-2">Info</option>
+                                        <option value="bg-white" class="bg-white py-2">White</option>
+                                        <option value="bg-light" class="bg-light py-2">Light</option>
+                                        <option value="bg-black" class="bg-black text-light py-2">Black</option>
+                                        <option value="bg-dark" class="bg-dark text-light py-2">Dark</option>
+                                        <option value="bg-transparent" class="bg-transparent py-2">Transparent</option>
+                                    </select>
+                                    <label for="labelBgColor">Label Background Color</label>
+                                </div>
+                                <div class="clearfix mb-1 label-bg-opacity">
+                                    <label class="form-control-plaintext float-start w-25">BG %</label>
+                                    <input type="range" class="form-range w-50 my-1 d-inline-block opacity-bg" value="0" data-side="opacity" data-container="#collapseLabelProperties" name="OpacityLabelBackground" min="0" max="4" />
+                                    <div class="form-control form-control-sm w-20 p-1 range-value d-inline-block float-end"></div>
+                                </div>
+                                <div class="custom-control label-bg-gradient custom-switch mb-2">
+                                    <input type="checkbox" class="custom-control-input" name="labelBgGradient" id="labelBgGradient" />
+                                    <label class="custom-control-label" for="labelBgGradient">Gradient Background</label>
+                                </div>
+
+
+                                <div class="form-check form-switch fs-6">
+                                    <input type="checkbox" role="switch" class="form-check-input" id="hideLabel" />
+                                    <label class="form-check-label" for="hideLabel"><small>Hide Label</small></label>
+                                </div>
+                            </div>
+					    </div>
+				    </div>
 
                     <div class="card input-card d-none mb-2">
                         <div class="card-header bg-secondary text-light px-2 py-0 card-toggle-thumb" data-bs-toggle="collapse" data-hidecaret="left" data-showcaret="down" role="button" data-bs-target="#collapseInputProperties" aria-expanded="true" aria-controls="collapseInputProperties">
@@ -124,7 +168,16 @@
                                         <option value="dark" class="bg-dark text-light py-2">Dark</option>
                                         <option value="link" class="text-primary py-2">Link</option>
                                     </select>
-	                                <label>Button Style</label>
+                                    <label>Button Style</label>
+                                </div>
+                                <div class="clearfix mb-1">
+                                    <label class="form-control-plaintext float-start w-25">BG %</label>
+                                    <input type="range" class="form-range w-50 my-1 d-inline-block opacity-bg" value="-1" data-side="opacity" data-container="#collapseButtonProperties" name="OpacityLabelBackground" min="-1" max="3">
+                                    <div class="form-control form-control-sm w-20 p-1 range-value d-inline-block float-end"></div>
+                                </div>
+                                <div class="custom-control custom-switch mb-2">
+                                    <input type="checkbox" class="custom-control-input" name="buttonBgGradient" id="buttonBgGradient">
+                                    <label class="custom-control-label" for="buttonBgGradient">Gradient Background</label>
                                 </div>
                                 <div class="form-floating button-icon my-1">
                                     <div class="dropdown form-select form-select-sm">
@@ -208,7 +261,7 @@
                                         <option value="text-light" class="text-light py-2">Light</option>
                                         <option value="text-dark" class="text-dark py-2">Dark</option>
                                     </select>
-	                                <label for="buttonIconColor">Icon Color</label>
+                                    <label for="buttonIconColor">Icon Color</label>
                                 </div>
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" class="custom-control-input" name="buttonOutline" id="buttonOutline">
@@ -295,31 +348,71 @@
 		                            <input type="checkbox" role="switch" class="form-check-input" id="isDisabled" />
 		                            <label class="form-check-label" for="isDisabled"><small>Disabled</small></label>
 	                            </div>
-	                            <div class="form-check form-switch fs-6">
-		                            <input type="checkbox" role="switch" class="form-check-input" id="useEmbedCardLayout" />
-		                            <label class="form-check-label" for="useEmbedCardLayout"><small>Use Card Layout</small></label>
-	                            </div>
-
-
                             </div>
                         </div>
                     </div>
-	                    
 
-					<div class="card form-card d-none mb-2 ">
+                    <div class="card form-card d-none mb-2 ">
                         <div class="card-header bg-secondary text-light px-2 py-0 card-toggle-thumb" data-bs-toggle="collapse" data-hidecaret="left" data-showcaret="down" role="button" data-bs-target="#collapseFormProperties" aria-expanded="true" aria-controls="collapseFormProperties">
                             <small class="font-weight-bold">Form Properties</small>
                             <span class="fa fa-caret-down fa-fw mt-1 float-end"></span>
                         </div>
                         <div class="collapse show" id="collapseFormProperties">
-	                        <div class="card-body px-2 pt-1 pb-2">
-                                
-		                        <div class="form-check form-switch fs-6">
-			                        <input type="checkbox" role="switch" class="form-check-input" id="useCardLayout" />
-			                        <label class="form-check-label" for="useCardLayout"><small>Use Card Layout</small></label>
-		                        </div>
+                            <div class="card-body px-2 pt-1 pb-2">
 
-	                        </div>
+                                <div class="form-check form-switch fs-6">
+                                    <input type="checkbox" role="switch" class="form-check-input" id="useCardLayout" />
+                                    <label class="form-check-label" for="useCardLayout"><small>Use Card Layout</small></label>
+                                </div>
+
+                                <div class="form-floating card-text-color mb-1">
+                                    <select id="cardTextColor" name="cardTextColor" class="form-select form-select-sm w-100">
+                                        <option value="">[ Default ]</option>
+                                        <option value="text-primary" class="text-primary py-2">Primary</option>
+                                        <option value="text-secondary" class="text-secondary py-2">Secondary</option>
+                                        <option value="text-success" class="text-success py-2">Success</option>
+                                        <option value="text-danger" class="text-danger py-2">Danger</option>
+                                        <option value="text-warning" class="text-warning py-2">Warning</option>
+                                        <option value="text-info" class="text-info py-2">Info</option>
+                                        <option value="text-light" class="bg-dark text-light py-2">Light</option>
+                                        <option value="text-dark" class="text-dark py-2">Dark</option>
+                                    </select>
+                                    <label for="cardTextColor">Card Text Color</label>
+                                </div>
+
+                                <div class="form-floating card-bg-color mb-1">
+                                    <select id="cardBgColor" name="cardBgColor" class="form-select form-select-sm w-100">
+                                        <option value="">[ Default ]</option>
+                                        <option value="bg-primary" class="bg-primary py-2">Primary</option>
+                                        <option value="bg-secondary" class="bg-secondary py-2">Secondary</option>
+                                        <option value="bg-success" class="bg-success py-2">Success</option>
+                                        <option value="bg-danger" class="bg-danger py-2">Danger</option>
+                                        <option value="bg-warning" class="bg-warning py-2">Warning</option>
+                                        <option value="bg-info" class="bg-info py-2">Info</option>
+                                        <option value="bg-white" class="bg-white py-2">White</option>
+                                        <option value="bg-light" class="bg-light py-2">Light</option>
+                                        <option value="bg-black" class="bg-black text-light py-2">Black</option>
+                                        <option value="bg-dark" class="bg-dark text-light py-2">Dark</option>
+                                        <option value="bg-transparent" class="bg-transparent py-2">Transparent</option>
+                                    </select>
+                                    <label for="cardBgColor">Card Background Color</label>
+                                </div>
+                                <div class="clearfix mb-1">
+                                    <label class="form-control-plaintext float-start w-25">BG %</label>
+                                    <input type="range" class="form-range w-50 my-1 d-inline-block opacity-bg" value="-1" data-side="opacity" data-container="#collapseFormProperties" name="OpacityLabelBackground" min="-1" max="3">
+                                    <div class="form-control form-control-sm w-20 p-1 range-value d-inline-block float-end"></div>
+                                </div>
+                                <div class="custom-control custom-switch mb-2">
+                                    <input type="checkbox" class="custom-control-input" name="cardBgGradient" id="cardBgGradient">
+                                    <label class="custom-control-label" for="cardBgGradient">Gradient Background</label>
+                                </div>
+                                <div class="custom-control custom-switch mb-2">
+                                    <input type="checkbox" class="custom-control-input" name="cardH100" id="cardH100">
+                                    <label class="custom-control-label" for="cardH100">100% Height</label>
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
 
@@ -636,8 +729,9 @@
                         <div class="collapse show" id="collapseWrapperStart">
                             <div class="card-body p-2">
                                 <div class="form-floating ">
-	                                <textarea name="WrapperHtmlStart" class="form-control form-control-sm" style="height: 4.7rem;" placeholder=""></textarea>
-	                                <label>HTML Code Snippet</label>
+                                    <textarea name="WrapperHtmlStart" class="form-control form-control-sm" style="height: 4.7rem;" placeholder=""></textarea>
+                                    <label>HTML Code Snippet </label>
+                                    <button class="btn btn-outline-secondary border btn-sm position-absolute" style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .7rem; top: 2px; right: 2px">...</button>
                                 </div>
                             </div>
                         </div>
@@ -652,6 +746,7 @@
                                 <div class="form-floating ">
                                     <textarea name="WrapperHtmlEnd" class="form-control form-control-sm" style="height: 4.7rem;" placeholder=""></textarea>
                                     <label>HTML Code Snippet</label>
+                                    <button class="btn btn-outline-secondary border btn-sm position-absolute" style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .7rem; top: 2px; right: 2px">...</button>
                                 </div>
                             </div>
                         </div>

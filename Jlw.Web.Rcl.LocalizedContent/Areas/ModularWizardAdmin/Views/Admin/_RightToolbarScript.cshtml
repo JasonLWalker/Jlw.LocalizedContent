@@ -9,6 +9,7 @@
 
         var oRightToolbar = $('#rightToolbar');
         var oFieldClass = $('input[name=FieldClass]', oRightToolbar);
+        var oLabelClass = $('input[name=LabelClass]', oRightToolbar);
         var oFieldData = $('input[name=FieldData]', oRightToolbar);
         
         t.oRightToolbar = oRightToolbar;
@@ -23,6 +24,9 @@
 	        t.rxDisplay = /(?<!\S)(?:(d(?:-sm|-md|-lg|-xl|-xxl|-print)?)(?:[\-])?(none|inline|inline-block|block|table|table-cell|table-row|flex|inline-flex)?)/gi;
 	        t.rxBorder = /(?<!\S)(?:(border(?:t|r|e|b|l|s|x|y)?(?:-sm|-md|-lg|-xl|-xxl)?)(?:[\-])?([0-5]|auto)?)/gi;
 	        t.rxButtons = /(?<!\S)(?:btn(?:[\-])?(outline|block|link|lg|sm)?(?:[\-])?(primary|secondary|success|danger|warning|info|light|dark|link)?)/gi;
+            t.rxBg = /(?<!\S)(bg-(?:primary|secondary|success|danger|warning|info|light|dark|black|white|transparent|gradient))/gi;
+            t.rxText = /(?<!\S)(text-(?:primary|secondary|success|danger|warning|info|light|dark|black|white|transparent))/gi;
+            t.rxOpacity = /(?<!\S)(bg-opacity-(?:75|50|25|10))/gi;
 	        t.rxIcon = /(?<!\S)(fa(?:[\w\-\d]+)?|(text-primary|text-secondary|text-success|text-danger|text-warning|text-info|text-light|text-dark))/gi;
         }
         
@@ -32,6 +36,7 @@
 	        t.aSides = ['', 't', 'e', 'b', 's'];
 	        t.aMarginSize = {'-6':'-5', '-5':'-4', '-4':'-3', '-3':'-2', '-2':'-1', '-1':'', '0':'0', '1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'auto'};
 	        t.aPaddingSize = {'-1':'', '0':'0', '1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'auto'};
+            t.aOpacitySize = { '0': '', '1': '75', '2': '50', '3': '25', '4': '10'};
 	        t.aColSize = {'-1':'', '0':'*', '1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'6', '7':'7', '8':'8', '9':'9', '10':'10', '11':'11', '12':'12', '13':'auto'};
         }
 
@@ -39,6 +44,7 @@
 	        // Add functions
 	        t.parseColClass = parseColClass;
 	        t.parsePaddingClass = parsePaddingClass;
+            t.parseLabelClass = parseLabelClass;
 	        t.parseButtonClass = parseButtonClass;
 	        t.parseButtonData = parseButtonData;
 
@@ -48,21 +54,23 @@
 
         function initControls() {
 	        $('input[name="ColSize"]', t.oRightToolbar).data('display-values', t.aColSize);
+            $('.opacity-bg', t.oRightToolbar).data('display-values', t.aOpacitySize);
 	        $('.padding-p', t.oRightToolbar).data('display-values', t.aPaddingSize);
 	        $('.margin-m', t.oRightToolbar).data('display-values', t.aMarginSize);
     
-	        $('.padding-p', t.oRightToolbar).on('change', onChangePaddingSize);
-	        $('.margin-m', t.oRightToolbar).on('change', onChangeMarginSize);
+            $('.opacity-bg', t.oRightToolbar).off('change').on('change', onChangeOpacitySize);
+            $('.padding-p', t.oRightToolbar).off('change').on('change', onChangePaddingSize);
+            $('.margin-m', t.oRightToolbar).off('change').on('change', onChangeMarginSize);
 
 
-	        $('input[name="ColSize"]', t.oRightToolbar).on('change', onChangeColSpanSize);
-	        $('input[name="WrapperColBreakpoint"]', t.oRightToolbar).on('change', onChangeColBreakpoint);
-	        $('input[name="FieldPaddingBreakpoint"],input[name="WrapperPaddingBreakpoint"]', t.oRightToolbar).on('change', onChangePaddingBreakpoint);
-	        $('input[name="FieldMarginBreakpoint"], input[name="WrapperMarginBreakpoint"]', t.oRightToolbar).on('change', onChangeMarginBreakpoint);
+            $('input[name="ColSize"]', t.oRightToolbar).off('change').on('change', onChangeColSpanSize);
+            $('input[name="WrapperColBreakpoint"]', t.oRightToolbar).off('change').on('change', onChangeColBreakpoint);
+            $('input[name="FieldPaddingBreakpoint"],input[name="WrapperPaddingBreakpoint"]', t.oRightToolbar).off('change').on('change', onChangePaddingBreakpoint);
+            $('input[name="FieldMarginBreakpoint"], input[name="WrapperMarginBreakpoint"]', t.oRightToolbar).off('change').on('change', onChangeMarginBreakpoint);
     
-	        $('.form-range', t.oRightToolbar).on('input',onChangeSlider);
-	        $('.btn-toggle-thumb', t.oRightToolbar).on('click',onTogglePanelCaret);
-	        $('.card-toggle-thumb', t.oRightToolbar).on('click',onTogglePanelCaret);
+	        $('.form-range', t.oRightToolbar).off('input').on('input',onChangeSlider);
+	        $('.btn-toggle-thumb', t.oRightToolbar).off('click').on('click',onTogglePanelCaret);
+	        $('.card-toggle-thumb', t.oRightToolbar).off('click').on('click',onTogglePanelCaret);
 
 	        $('select[name=buttonIcon] option', t.oRightToolbar).each(function() {
 		        var elem = $(this);
@@ -70,15 +78,17 @@
 		        $('.button-icon .dropdown-menu', t.oRightToolbar).append('<a href="#" class="dropdown-item small" data-icon=' + val + '>' + (val == "" ? '' : '<span class="fa fa-fw ' + val + '"></span> - ') + elem.text() + '</a>');
 	        });
             
-			$('#btn-update-language').on('click', onClickBtnLanguage);
-			$('.btn-field-data').on('click', onClickBtnFieldData);
+			$('#btn-update-language').off('click').on('click', onClickBtnLanguage);
+			$('.btn-field-data').off('click').on('click', onClickBtnFieldData);
             @if(Model?.CanEditField ?? false) {
 		        <text>
 			        $('select[name="buttonStyle"],input[name="buttonH100"],input[name="buttonOutline"],input[name="buttonBlock"]', t.oRightToolbar).on('change', onChangeButtonClass);
 			        $('select[name=buttonIcon],select[name=buttonIconColor],select[name=buttonActionType],input[name=buttonEventClick],.button-action-opts', t.oRightToolbar).on('change', onChangeButtonData);
 
 		            $('.button-icon a.dropdown-item', t.oRightToolbar).off().on('click', onChangeButtonIcon);
-			        $('select[name=InputType]', t.oRightToolbar).on('change', onChangeInputType);
+			        $('select[name=InputType]', t.oRightToolbar).off().on('change', onChangeInputType);
+                    $('input[name=LabelClass],select[name=labelTextColor],select[name=labelBgColor],input[name=labelBgGradient],input[name=OpacityLabelBackground]', t.oRightToolbar).off('change').on('change', onChangeLabelClass);
+                    $('#hideLabel', t.oRightToolbar).off().on('change', onChangeLabelProps);
 			        $('input[name=FieldKey],input[name=DefaultLabel],input[name=FieldClass],input[name=WrapperClass],input[name=FieldData]', t.oRightToolbar).off().on('change', saveFieldData);
 			        $('select[name=FieldType],textarea[name=WrapperHtmlStart],textarea[name=WrapperHtmlEnd]', t.oRightToolbar).off().on('change', saveFieldData);          
 			        $('#field-type-edit').on('click', onClickBtnFieldTypeEdit);
@@ -213,6 +223,7 @@
 			        var fieldData = data['FieldData'];
 			        var fieldClass = data['FieldClass'];
 			        var fieldOrder = data['Order'];
+                    var labelClass = fieldData['labelClass'];
 			        var parentKey = data['ParentKey'];
 			        var wrapperHtmlStart = data["WrapperHtmlStart"];
 			        var wrapperHtmlEnd = data["WrapperHtmlEnd"];
@@ -266,14 +277,26 @@
 			        oFieldData.val(s);
 
 
-					$('.label-card').removeClass('d-none');
+                    //$('.label-text-color').addClass('d-none');
+                    $('input[name=LabelClass]').val(labelClass);
+                    $('.label-bg-color').addClass('d-none');
+                    $('.label-bg-opacity').addClass('d-none');
+                    $('.label-bg-gradient').addClass('d-none');
+
+                    t.parseLabelClass(labelClass);
+
+
+                    $('.label-card').removeClass('d-none');
                     var b = (fieldData['hideLabel'] || "") ? true : false;
                     $('input#hideLabel').prop('checked', b);
+
+
                     
 			        switch (fieldType) {
 				        case 'WIZARD':
-					$('.label-card').addClass('d-none');
-							break;
+					        $('.label-card').addClass('d-none');
+                            break;
+
 				        case 'BUTTON':
 					        $('.button-card').removeClass('d-none');
 					        s = (fieldData['type'] || "").toUpperCase();
@@ -293,26 +316,35 @@
 					        $('.input-group-append', o).removeClass('d-none');
 					        t.libErrorMessages.redrawTable();
 					        break;
-				        case 'FORM':
-					        $('.form-card').removeClass('d-none');
-					        $('.error-message-card').addClass('d-none');
-                            b = (fieldData['useCardLayout'] || "") ? true : false;
-                            $('input#useCardLayout').prop('checked', b);
-					        t.libErrorMessages.redrawTable();
-					        break;
-				        case 'EMBED':
-					        $('.embed-card').removeClass('d-none');
-					        $('.error-message-card').addClass('d-none');
 
-					        $('input[name=EmbedScreen]').val((fieldData['screen'] || fieldData['Screen'] || ""));
-					        $('input[name=EmbedForm]').val((fieldData['form'] || fieldData['Form'] || ""));
+                        case 'EMBED':
+                            $('.embed-card').removeClass('d-none');
+                            $('.error-message-card').addClass('d-none');
+
+                            $('input[name=EmbedScreen]').val((fieldData['screen'] || fieldData['Screen'] || ""));
+                            $('input[name=EmbedForm]').val((fieldData['form'] || fieldData['Form'] || ""));
 
                             b = (fieldData['hasEditButton'] || "") ? true : false;
                             $('input#hasEditButton').prop('checked', b);
                             b = (fieldData['disabled'] || "") ? true : false;
                             $('input#isDisabled').prop('checked', b);
+                            //b = (fieldData['useCardLayout'] || "") ? true : false;
+                            //$('input#useCardLayout').prop('checked', b);
+                            //t.libErrorMessages.redrawTable();
+                            //break;
+
+                            // Do not break, drop through to form initialization
+                        case 'FORM':
+					        $('.form-card').removeClass('d-none');
+					        $('.error-message-card').addClass('d-none');
                             b = (fieldData['useCardLayout'] || "") ? true : false;
-                            $('input#useEmbedCardLayout').prop('checked', b);
+                            $('input#useCardLayout').prop('checked', b);
+
+                            //$('.label-text-color').removeClass('d-none');
+                            $('.label-bg-color').removeClass('d-none');
+                            $('.label-bg-opacity').removeClass('d-none');
+                            $('.label-bg-gradient').removeClass('d-none');
+
 					        t.libErrorMessages.redrawTable();
 					        break;
 				        case 'SELECT':
@@ -527,6 +559,34 @@
 	        }
         }
 
+        function onChangeOpacitySize(evt) {
+            /*
+            
+            var target = $(evt.delegateTarget);
+            var parent = $(target.data('container'), t.oRightToolbar);
+            var p = $('input[name=PaddingSize]', parent);
+            var coll;
+
+            if (!p.hasClass('updating')) {
+                p.addClass('updating');
+
+                if (target.data('side') === 'p') {
+                    coll = $('.padding-p', parent);
+                    coll.val(target.val());
+                    coll.each(function () {
+                        $(this).trigger('input');
+                    });
+                } else {
+                    p.val(-1);
+                    p.trigger('input');
+                }
+                updatePaddingClass(parent);
+                window.setTimeout(function () { p.removeClass('updating'); }, 10);
+            }
+            */
+
+        }
+
         function onChangeColSpanSize(evt) {
 	        var target = $(evt.delegateTarget);
 	        var parent = $(target.data('container'), t.oRightToolbar);
@@ -561,6 +621,56 @@
 	        c.addClass(s);
         }
 
+        function onChangeLabelClass(evt) {
+            var o = $(evt.delegateTarget);
+            var s = oLabelClass.val();
+            var textColor = $('select[name=labelTextColor]', t.oRightToolbar).val();
+            var bgColor = $('select[name=labelBgColor]', t.oRightToolbar).val();
+            var bgOpacity = $('input[name=OpacityLabelBackground]', t.oRightToolbar).val();
+            var bgGradient = $('input[name=labelBgGradient]', t.oRightToolbar).is(':checked');
+            //var btnH100 = $('input[name=buttonH100]', t.oRightToolbar).is(':checked');
+
+            s = s.replace(t.rxOpacity, '').replace(t.rxBg, '').replace(t.rxText, '').trim();
+
+            if (textColor)
+                s += ' ' + textColor;
+
+            if (bgColor)
+                s += ' ' + bgColor;
+
+            if (bgGradient)
+                s += ' bg-gradient';
+
+            if (t.aOpacitySize[bgOpacity])
+                s += ' bg-opacity-' + t.aOpacitySize[bgOpacity];
+            /*
+            s += ' btn';
+            if (btnStyle || btnOutline || btnLink)
+                s += ' btn-' + (btnOutline ? 'outline-' : '');
+
+            if (btnStyle)
+                s += btnStyle;
+
+            if (btnLink)
+                s += 'link';
+
+
+            if (btnBlock)
+                s += ' w-100';
+
+            if (btnH100)
+                s += ' h-100';
+            */
+
+            oLabelClass.val(s.trim());
+            onChangeLabelProps(evt);
+            if (o.hasClass('opacity-bg'))
+                onChangeSlider({ 'delegateTarget': $('input[name="OpacityLabelBackground"]')[0] });
+            //oLabelClass.trigger('change');
+        }
+
+
+
         function onChangeButtonClass() {
 	        var s = oFieldClass.val();
 	        var btnStyle = $('select[name=buttonStyle]', t.oRightToolbar).val();
@@ -594,6 +704,33 @@
 	        var oItem = $(this);
 	        $('select[name=buttonIcon]', t.oRightToolbar).val(oItem.data("icon")).trigger('change');
         }
+
+        function onChangeLabelProps(evt) {
+            var fieldData = null;
+            var labelClass = ($('input[name=LabelClass]', t.oRightToolbar).val() || "").toLowerCase();
+            var hideLabel = $('#hideLabel', t.oRightToolbar).is(':checked');
+
+
+            try {
+                fieldData = $.parseJSON(oFieldData.val());
+            } catch {
+                // JSON parsing error, do nothing
+            }
+
+            if (!$.isPlainObject(fieldData)) {
+                return;
+            }
+
+            fieldData["labelClass"] = labelClass;
+            fieldData["hideLabel"] = hideLabel;
+
+
+            var s = JSON.stringify(fieldData);
+            oFieldData.val(s);
+            oFieldData.trigger('change');
+
+        }
+
 
         function onChangeButtonData(evt) {
 	        var fieldData = {};
@@ -984,6 +1121,52 @@
                 }
             }
             return data;
+        }
+
+        function parseLabelClass(s) {
+            $('input[name="labelBgGradient"]').prop('checked', false);
+            $('select[name="labelTextColor"]').val('');
+            $('select[name="labelBgColor"]').val('');
+            $('input[name="OpacityLabelBackground"]').val('0');
+            var matches = {};
+            while (matches = t.rxText.exec(s)) {
+                if (matches[1].toLowerCase()) {
+                    $('select[name="labelTextColor"]').val(matches[1]);
+                }
+            }
+
+            while (matches = t.rxBg.exec(s)) {
+                if (matches[1].toLowerCase()) {
+                    switch (matches[1].toLowerCase()) {
+                        case 'bg-gradient':
+                            $('input[name="labelBgGradient"]').prop('checked', true);
+                            break;
+                        default:
+                            $('select[name="labelBgColor"]').val(matches[1]);
+                    }
+                }
+            }
+
+            while (matches = t.rxOpacity.exec(s)) {
+                if ((matches[1] || '')) {
+                    switch (matches[1].toLowerCase()) {
+                        case 'bg-opacity-75':
+                            $('input[name="OpacityLabelBackground"]').val('1');
+                            break;
+                        case 'bg-opacity-50':
+                            $('input[name="OpacityLabelBackground"]').val('2');
+                            break;
+                        case 'bg-opacity-25':
+                            $('input[name="OpacityLabelBackground"]').val('3');
+                            break;
+                        case 'bg-opacity-10':
+                            $('input[name="OpacityLabelBackground"]').val('4');
+                            break;
+                    }
+                }
+            }
+
+            onChangeSlider({ 'delegateTarget': $('input[name="OpacityLabelBackground"]')[0]});
         }
 
         function parseButtonClass(s) {
