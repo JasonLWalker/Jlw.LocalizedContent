@@ -349,12 +349,14 @@ namespace Jlw.Data.LocalizedContent
         }
 
         /// ToDo: Add XMLDoc comments
-        public void ProcessPlaceholders(IWizardContentField field, object replacementObject)
+        public virtual void ProcessPlaceholders(IWizardContentField field, object replacementObject)
         {
             if (field is null || replacementObject is null)
                 return;
 
             field.Label = ResolvePlaceholders(field.Label, replacementObject);
+            field.FieldClass = ResolvePlaceholders(field.FieldClass, replacementObject);
+            field.WrapperClass = ResolvePlaceholders(field.WrapperClass, replacementObject);
             field.WrapperHtmlStart = ResolvePlaceholders(field.WrapperHtmlStart, replacementObject);
             field.WrapperHtmlEnd = ResolvePlaceholders(field.WrapperHtmlEnd, replacementObject);
             switch (field)
