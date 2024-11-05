@@ -79,11 +79,11 @@ namespace Jlw.Data.LocalizedContent.Tests
             AddProperty(typeof(string), "GroupKey", Public, Protected);
             AddProperty(typeof(string), "FieldKey", Public, Protected);
             AddProperty(typeof(string), "FieldType", Public, Protected);
-            AddProperty(typeof(string), "FieldData", Public, Protected);
-            AddProperty(typeof(string), "FieldClass", Public, Protected);
+            AddProperty(typeof(string), "FieldData", Public, Public);
+            AddProperty(typeof(string), "FieldClass", Public, Public);
             AddProperty(typeof(string), "ParentKey", Public, Protected);
             AddProperty(typeof(string), "DefaultLabel", Public, Protected);
-            AddProperty(typeof(string), "WrapperClass", Public, Protected);
+            AddProperty(typeof(string), "WrapperClass", Public, Public);
             AddProperty(typeof(string), "WrapperHtmlStart", Public, Public);
             AddProperty(typeof(string), "WrapperHtmlEnd", Public, Public);
             AddProperty(typeof(string), "AuditChangeType", Public, Protected);

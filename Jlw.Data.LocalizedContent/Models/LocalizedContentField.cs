@@ -40,10 +40,10 @@ namespace Jlw.Data.LocalizedContent
         public string FieldType { get; protected set; }
         /// <inheritdoc />
         /// TODO Edit XML Comment Template for FieldData
-        public string FieldData { get; protected set; }
+        public string FieldData { get; set; }
         /// <inheritdoc />
         /// TODO Edit XML Comment Template for FieldClass
-        public string FieldClass { get; protected set; }
+        public string FieldClass { get; set; }
         /// <inheritdoc />
         /// TODO Edit XML Comment Template for ParentKey
         public string ParentKey { get; protected set; }
@@ -53,7 +53,7 @@ namespace Jlw.Data.LocalizedContent
 
         /// <inheritdoc />
         /// TODO Edit XML Comment Template for WrapperClass
-        public string WrapperClass { get; protected set; }
+        public string WrapperClass { get; set; }
 
         /// <inheritdoc />
         /// TODO Edit XML Comment Template for WrapperHtmlStart

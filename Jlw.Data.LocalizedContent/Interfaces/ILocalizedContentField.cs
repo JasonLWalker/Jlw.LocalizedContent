@@ -62,7 +62,7 @@ namespace Jlw.Data.LocalizedContent
         /// <value>The field data.</value>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, NamingStrategyType = typeof(DefaultNamingStrategy))] 
         [JsonConverter(typeof(JlwJsonConverter<string>))] 
-        string FieldData { get; }
+        string FieldData { get; set; }
 
         /// <summary>
         /// Matches the [FieldClass] column of the [LocalizedContentFields] table in the database.
@@ -70,7 +70,7 @@ namespace Jlw.Data.LocalizedContent
         /// <value>The field class.</value>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, NamingStrategyType = typeof(DefaultNamingStrategy))] 
         [JsonConverter(typeof(JlwJsonConverter<string>))] 
-        string FieldClass { get; }
+        string FieldClass { get; set; }
 
         /// <summary>
         /// Matches the [ParentKey] column of the [LocalizedContentFields] table in the database.
@@ -94,7 +94,7 @@ namespace Jlw.Data.LocalizedContent
         /// <value>The wrapper class.</value>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, NamingStrategyType = typeof(DefaultNamingStrategy))] 
         [JsonConverter(typeof(JlwJsonConverter<string>))] 
-        string WrapperClass { get; }
+        string WrapperClass { get; set; }
 
         /// <summary>
         /// Matches the [WrapperHtmlStart] column of the [LocalizedContentFields] table in the database.
