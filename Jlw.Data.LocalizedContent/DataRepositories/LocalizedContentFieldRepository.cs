@@ -53,6 +53,9 @@ namespace Jlw.Data.LocalizedContent
         /// TODO Edit XML Comment Template for SpListRecord
         protected const string SpListRecord = "sp_GetLocalizedContentFieldList";
 
+        public LocalizedContentFieldRepository(IModularDbOptions dbOpts) : this(dbOpts.DbClient, dbOpts.ConnectionString) {}
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalizedContentFieldRepository"/> class.
         /// </summary>

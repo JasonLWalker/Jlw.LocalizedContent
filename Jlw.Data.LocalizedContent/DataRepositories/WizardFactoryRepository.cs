@@ -35,6 +35,7 @@ namespace Jlw.Data.LocalizedContent
         /// <summary> Stored procedure to retrieve a single record </summary>
         protected const string SpGetRecord = "sp_GetWizardContentFieldRecord";
 
+        public WizardFactoryRepository(IModularDbOptions dbOpts) : this(dbOpts.DbClient, dbOpts.ConnectionString) {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WizardFactoryRepository"/> class.

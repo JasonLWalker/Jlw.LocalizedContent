@@ -48,6 +48,8 @@ namespace Jlw.Data.LocalizedContent
         /// </summary>
         protected const string SpListRecord = "sp_GetLocalizedGroupDataItemList";
 
+        public LocalizedGroupDataItemRepository(IModularDbOptions dbOpts) : this(dbOpts.DbClient, dbOpts.ConnectionString) {}
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalizedGroupDataItemRepository"/> class.
         /// </summary>
