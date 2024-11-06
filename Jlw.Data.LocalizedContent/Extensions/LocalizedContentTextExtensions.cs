@@ -42,11 +42,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 ModularDbOptions options = (provider.GetService<IOptions<LocalizedContentTextRepositoryOptions>>() ?? new OptionsWrapper<LocalizedContentTextRepositoryOptions>(provider.GetService<LocalizedContentTextRepositoryOptions>())).Value;
                 var dbOpts = provider.GetService<IModularDbOptions>();
 
-                var dbClient = options?.DbClient ?? dbOpts.DbClient;
+                var dbClient = options?.DbClient ?? dbOpts?.DbClient;
                 dbClient ??= provider.GetRequiredService<IModularDbClient>();
 
                 var connString = options?.ConnectionString;
-                if (string.IsNullOrWhiteSpace(connString)) connString = dbOpts.ConnectionString ?? "";
+                if (string.IsNullOrWhiteSpace(connString)) connString = dbOpts?.ConnectionString ?? "";
 
                 return new LocalizedContentTextRepository(dbClient, connString);
             });

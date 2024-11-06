@@ -42,11 +42,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 var options = (provider.GetService<IOptions<ModularDbOptions>>() ?? new OptionsWrapper<ModularDbOptions>(provider.GetRequiredService<ModularDbOptions>())).Value;
                 var dbOpts = provider.GetService<IModularDbOptions>();
 
-                var dbClient = options?.DbClient ?? dbOpts.DbClient;
+                var dbClient = options?.DbClient ?? dbOpts?.DbClient;
                 dbClient ??= provider.GetRequiredService<IModularDbClient>();
 
                 var connString = options?.ConnectionString;
-                if (string.IsNullOrWhiteSpace(connString)) connString = dbOpts.ConnectionString ?? "";
+                if (string.IsNullOrWhiteSpace(connString)) connString = dbOpts?.ConnectionString ?? "";
 
                 return new WizardFactoryRepository(dbClient, connString);
             });

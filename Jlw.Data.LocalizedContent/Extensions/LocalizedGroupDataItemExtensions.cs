@@ -42,11 +42,11 @@ namespace Microsoft.Extensions.DependencyInjection
                 IModularDbOptions options = (provider.GetService<IOptions<LocalizedGroupDataItemRepositoryOptions>>() ?? new OptionsWrapper<LocalizedGroupDataItemRepositoryOptions>(provider.GetService<LocalizedGroupDataItemRepositoryOptions>())).Value;
                 var dbOpts = provider.GetService<IModularDbOptions>();
 
-                var dbClient = options?.DbClient ?? dbOpts.DbClient;
+                var dbClient = options?.DbClient ?? dbOpts?.DbClient;
                 dbClient ??= provider.GetRequiredService<IModularDbClient>();
 
                 var connString = options?.ConnectionString;
-                if (string.IsNullOrWhiteSpace(connString)) connString = dbOpts.ConnectionString ?? "";
+                if (string.IsNullOrWhiteSpace(connString)) connString = dbOpts?.ConnectionString ?? "";
                 
                 return new LocalizedGroupDataItemRepository(dbClient, connString);
             });
