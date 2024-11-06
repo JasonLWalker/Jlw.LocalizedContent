@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using System;
+using System.Linq;
 using Jlw.Data.LocalizedContent;
 using Jlw.Utilities.Data.DbUtility;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -39,12 +40,19 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddSingleton<IWizardFactoryRepository>(provider =>
             {
                 var options = (provider.GetService<IOptions<ModularDbOptions>>() ?? new OptionsWrapper<ModularDbOptions>(provider.GetRequiredService<ModularDbOptions>())).Value;
-                var client = options?.DbClient ?? provider.GetRequiredService<IModularDbClient>();
-                var connString = options?.ConnectionString ?? "";
-                return new WizardFactoryRepository(client, connString);
+                var dbOpts = provider.GetService<IModularDbOptions>();
+
+                var dbClient = options?.DbClient ?? dbOpts.DbClient;
+                dbClient ??= provider.GetRequiredService<IModularDbClient>();
+
+                var connString = options?.ConnectionString;
+                if (string.IsNullOrWhiteSpace(connString)) connString = dbOpts.ConnectionString ?? "";
+
+                return new WizardFactoryRepository(dbClient, connString);
             });
 
             return services;
         }
-    } 
+
+    }
 } 

@@ -39,13 +39,15 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.TryAddSingleton<ILocalizedGroupDataItemRepository>(provider =>
             {
-                IModularDbOptions options = provider.GetService<IOptions<LocalizedGroupDataItemRepositoryOptions>>()?.Value;
-                options ??= (new OptionsWrapper<LocalizedGroupDataItemRepositoryOptions>(provider.GetService<LocalizedGroupDataItemRepositoryOptions>()))?.Value;
-                options ??= provider.GetService<IModularDbOptions>();
-                options ??= provider.GetService<ModularDbOptions>();
+                IModularDbOptions options = (provider.GetService<IOptions<LocalizedGroupDataItemRepositoryOptions>>() ?? new OptionsWrapper<LocalizedGroupDataItemRepositoryOptions>(provider.GetService<LocalizedGroupDataItemRepositoryOptions>())).Value;
+                var dbOpts = provider.GetService<IModularDbOptions>();
 
-                var dbClient = options?.DbClient ?? provider.GetRequiredService<IModularDbClient>();
-                var connString = options?.ConnectionString ?? "";
+                var dbClient = options?.DbClient ?? dbOpts.DbClient;
+                dbClient ??= provider.GetRequiredService<IModularDbClient>();
+
+                var connString = options?.ConnectionString;
+                if (string.IsNullOrWhiteSpace(connString)) connString = dbOpts.ConnectionString ?? "";
+                
                 return new LocalizedGroupDataItemRepository(dbClient, connString);
             });
 
