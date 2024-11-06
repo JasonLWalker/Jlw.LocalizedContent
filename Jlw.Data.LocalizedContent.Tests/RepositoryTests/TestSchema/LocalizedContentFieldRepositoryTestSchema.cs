@@ -10,6 +10,7 @@ namespace Jlw.Data.LocalizedContent.Tests
         void InitConstructors()
         {
             AddConstructor(Public, new Type[] { typeof(IModularDbClient), typeof(string) });
+            AddConstructor(Public, new Type[] { typeof(IModularDbOptions) });
         }
 
         void InitProperties()
