@@ -332,7 +332,19 @@ function libJlwWizardBase(t, $, initOptions, undefined) {
 
     // Callback when a form field is rendered
     function onRenderWizardFormField(obj, data, parent) { 
-		var $obj = $(obj);
+        var $obj = $(obj);
+        let fieldData = data['FieldData'];
+        if (fieldData && fieldData['attr']) {
+            let attr = fieldData['attr'];
+            if ($.isPlainObject(attr)) {
+                for (var i in attr) {
+                    var k = i;
+                    var v = attr[i] || '';
+                    $obj.attr(k, v);
+                }
+            }
+        }
+
 		switch ((data["FieldType"] || "").toLowerCase()) {
 		case 'heading':
 		case 'buttongroup':
@@ -353,7 +365,20 @@ function libJlwWizardBase(t, $, initOptions, undefined) {
 
     // Callback when a form field is rendered
     function onRenderWizardElement(obj, data, parent) { 
-		var $obj = $(obj);
+        var $obj = $(obj);
+
+        let fieldData = data['FieldData'];
+        if (fieldData && fieldData['attr']) {
+            let attr = fieldData['attr'];
+            if ($.isPlainObject(attr)) {
+                for (var i in attr) {
+                    var k = i;
+                    var v = attr[i] || '';
+                    $obj.attr(k, v);
+                }
+            }
+        }
+
 		switch ((data["FieldType"] || "").toLowerCase()) {
 		case "undefined":
 		case "":
@@ -363,14 +388,28 @@ function libJlwWizardBase(t, $, initOptions, undefined) {
 		default:
 			t.fnRenderElementDebug($obj, data);
 			break;
-		}
+        }
+
 		return obj;
     }
 
     // Callback when a wizard is rendered
     function onRenderWizard(obj, data, parent) { 
-		var $obj = $('form', obj);
-		t.fnRenderElementDebug($obj, data);
+        var $obj = $('form', obj);
+
+        let fieldData = data['FieldData'];
+        if (fieldData && fieldData['attr']) {
+            let attr = fieldData['attr'];
+            if ($.isPlainObject(attr)) {
+                for (var i in attr) {
+                    var k = i;
+                    var v = attr[i] || '';
+                    $obj.attr(k, v);
+                }
+            }
+        }
+
+        t.fnRenderElementDebug($obj, data);
         window.scrollTo(0,0);
         return obj; 
     }
@@ -682,8 +721,13 @@ function libJlwWizardBase(t, $, initOptions, undefined) {
             t.onRenderWizardFormField(obj, data, parent);
 
             parent.append(obj);
+            
             obj.attr('data-field-type', field);
+            obj.attr('data-field-key', data["FieldKey"]);
+
         }
+
+
         return obj;
     }
 
