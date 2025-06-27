@@ -44,7 +44,7 @@
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Jlw.Extensions.DataParsing" Version="5.1.9166.6891" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.17" /> 
-    <PackageReference Include="Jlw.Utilities.WebApiUtility" Version="1.5.7928.8091" />
+    <PackageReference Include="Jlw.Utilities.WebApiUtility" Version="1.6.9308.8859" />
   </ItemGroup>
 
   <ItemGroup>
