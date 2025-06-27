@@ -155,6 +155,7 @@ namespace Microsoft.Extensions.DependencyInjection
             ImportSqlObject("dbo.sp_GetFormFields", server, dbClient);
             ImportSqlObject("dbo.sp_GetLocalizedContentFieldRecordByName", server, dbClient);
 
+            ImportSqlObject("dbo.sp_GetWizardSideNavData", server, dbClient);
             ImportSqlObject("dbo.sp_GetWizardFields", server, dbClient);
             ImportSqlObject("dbo.sp_GetWizardModelFields", server, dbClient);
             ImportSqlObject("dbo.sp_GetWizardContentFieldRecord", server, dbClient);
