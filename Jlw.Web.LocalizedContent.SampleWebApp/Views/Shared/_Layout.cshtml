@@ -1,5 +1,4 @@
-﻿@using Azure.Core
-@using Jlw.Web.Rcl.LocalizedContent
+﻿@using Jlw.Web.Rcl.LocalizedContent
 @using Microsoft.AspNetCore.Http
 @using Microsoft.Extensions.DependencyInjection
 @inject IWizardSettings _settings
@@ -67,7 +66,8 @@
     </div>
     <script language="javascript" src="~/@libRoot/js/jquery.min.js?_=@version"></script>
     <script language="javascript" src="~/@libRoot/js/bootstrap.min.js?_=@version"></script>
-    <script language="javascript" src="~/@libRoot/js/toastr.min.js?_=@version"></script>
+<script language="javascript" src="~/@libRoot/js/toastr.min.js?_=@version"></script>
+<!-- Start scripts -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

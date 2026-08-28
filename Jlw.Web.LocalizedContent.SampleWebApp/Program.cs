@@ -17,7 +17,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using TUser = Jlw.Extensions.Identity.Stores.ModularBaseUser;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Microsoft.SqlServer.Management.Smo.Wmi;
 
 namespace Jlw.Web.LocalizedContent.SampleWebApp;
