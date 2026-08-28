@@ -78,7 +78,7 @@
     },
     {
       "provider": "jsdelivr",
-      "library": "mar10/fancytree@2.38.2",
+      "library": "mar10/fancytree@2.38.5",
       "destination": "resources/LocalizedContent/fancytree/",
       "files": [
         "dist/skin-lion/**",
