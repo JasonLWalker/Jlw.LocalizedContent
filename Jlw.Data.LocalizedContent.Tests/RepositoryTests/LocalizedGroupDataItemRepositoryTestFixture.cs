@@ -188,7 +188,7 @@ namespace Jlw.Data.LocalizedContent.Tests
 
             TRepo sut = new TRepo(mockClient.Object, "");
 
-            Assert.ThrowsException<NotImplementedException>(() => sut.UpdateRecord(input));
+            Assert.Throws<NotImplementedException>(() => sut.UpdateRecord(input));
         }
 
         [TestMethod]
@@ -203,7 +203,7 @@ namespace Jlw.Data.LocalizedContent.Tests
 
             TRepo sut = new TRepo(mockClient.Object, "");
 
-            Assert.ThrowsException<NotImplementedException>(() => sut.InsertRecord(input));
+            Assert.Throws<NotImplementedException>(() => sut.InsertRecord(input));
         }
 
 
